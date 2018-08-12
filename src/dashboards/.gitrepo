@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = git@gitswarm.f5net.com:kruman/admdb-grafana-dashboard.git
+	branch = app
+	commit = 48821400176c490e9219de1985a506b0e351fcf0
+	parent = 00df0ef6532e34906986c0caaf833a304a4523af
+	cmdver = 0.3.1
