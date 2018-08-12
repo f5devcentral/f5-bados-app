@@ -1,0 +1,557 @@
+{
+  "id": null,
+  "title": "DOSL7",
+  "tags": [],
+  "style": "dark",
+  "timezone": "browser",
+  "editable": true,
+  "hideControls": false,
+  "sharedCrosshair": true,
+  "rows": [
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "300px",
+      "panels": [
+        {
+          "aliasColors": {
+            "Actual": "#1F78C1",
+            "Auto Threshold": "#7EB26D",
+            "Min": "#9AC48A"
+          },
+          "bars": false,
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "fill": 5,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 1,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "minSpan": null,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "seriesOverrides": [
+            {
+              "alias": "Min"
+            },
+            {
+              "alias": "Max"
+            },
+            {
+              "color": "#E24D42",
+              "fill": 5,
+              "fillBelowTo": "Auto Threshold"
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Auto Threshold",
+              "query": "{\"vs\":\"$vs\",\"topic\":\"dosl7d_auto_thresh_tps\", \"metric\":\"all\",\"columns\":[2]}",
+              "refId": "D"
+            },
+            {
+              "alias": "$ip Short Term RPS",
+              "query": "{\"vs\":\"$vs\",\"topic\":\"dosl7_ent_IP\", \"metric\":\"$ip\",\"columns\":[4]}",
+              "refId": "E"
+            },
+            {
+              "alias": "$url Short Term RPS",
+              "query": "{\"vs\":\"$vs\",\"topic\":\"dosl7_ent_URL\", \"metric\": \"$url\",\"columns\":[4]}",
+              "refId": "F"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "IP/URL rate vs Auto Threshold",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "ops",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "columns": [],
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "fontSize": "100%",
+          "id": 2,
+          "isNew": true,
+          "links": [],
+          "pageSize": null,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": 0,
+            "desc": true
+          },
+          "span": 4,
+          "styles": [
+            {
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "decimals": 2,
+              "pattern": "/.*/",
+              "thresholds": [],
+              "type": "number",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "alias": "Events",
+              "query": "{\"vs\":\"$vs\",\"topic\":\"dosl7_attack_event\", \"metric\":\"all\",\"columns\":[0],\"precision\": \"default\"}",
+              "refId": "A"
+            }
+          ],
+          "title": "Events",
+          "transform": "timeseries_to_columns",
+          "type": "table"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 3,
+          "interval": null,
+          "isNew": true,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 4,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "alias": "State",
+              "query": "{\"vs\":\"$vs\",\"topic\":\"dosl7_attack_event\", \"metric\": \"all\",\"columns\":[0],\"precision\": \"default\"}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": "0",
+          "title": "Last Event",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [],
+          "valueName": "avg"
+        },
+        {
+          "aliasColors": {
+            "Actual": "#1F78C1",
+            "Auto Threshold": "#7EB26D",
+            "Min": "#9AC48A"
+          },
+          "bars": false,
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "fill": 2,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "hideTimeOverride": false,
+          "id": 4,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "minSpan": null,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "seriesOverrides": [],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Auto Threshold",
+              "query": "{\"vs\":\"$vs\",\"topic\":\"dosl7d_auto_thresh_top_geo\", \"metric\": \"other\",\"columns\":[5]}",
+              "refId": "D"
+            },
+            {
+              "alias": "$geo1",
+              "query": "{\"vs\":\"$vs\",\"topic\":\"dosl7_ent_GEO\", \"metric\": \"$geo1\",\"columns\":[4]}",
+              "refId": "E"
+            },
+            {
+              "alias": "$geo2",
+              "query": "{\"vs\":\"$vs\",\"topic\":\"dosl7_ent_GEO\", \"metric\": \"$geo2\",\"columns\":[4]}",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Geo",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 2,
+            "value_type": "cumulative"
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "ops",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "cacheTimeout": null,
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "fontSize": "80%",
+          "format": "short",
+          "height": "",
+          "id": 5,
+          "interval": null,
+          "isNew": true,
+          "legend": {
+            "show": true,
+            "values": true
+          },
+          "legendType": "On graph",
+          "links": [],
+          "maxDataPoints": 3,
+          "minSpan": null,
+          "nullPointMode": "connected",
+          "pieType": "pie",
+          "span": 4,
+          "strokeWidth": 1,
+          "targets": [
+            {
+              "alias": "$geo1",
+              "query": "{\"vs\":\"$vs\",\"topic\":\"dosl7_ent_GEO\", \"metric\": \"$geo1\",\"columns\":[4]}",
+              "refId": "A"
+            },
+            {
+              "alias": "$geo2",
+              "query": "{\"vs\":\"$vs\",\"topic\":\"dosl7_ent_GEO\", \"metric\": \"$geo2\",\"columns\":[4]}",
+              "refId": "B"
+            }
+          ],
+          "title": "Geo",
+          "transparent": false,
+          "type": "grafana-piechart-panel",
+          "valueName": "avg"
+        }
+      ],
+      "title": "Row"
+    }
+  ],
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "templating": {
+    "list": [
+      {
+        "current": {
+         },
+        "datasource": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "BIG-IP",
+        "multi": false,
+        "name": "ds",
+        "options": [
+          {
+            "selected": true
+          },
+          {
+            "selected": false
+          },
+          {
+            "selected": false
+          }
+        ],
+        "query": "grafana-admdb-datasource",
+        "refresh": 1,
+        "regex": "",
+        "type": "datasource"
+      },
+      {
+        "current": {
+         },
+        "datasource": "$ds",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Virtual Server",
+        "multi": false,
+        "name": "vs",
+        "options": [
+          {
+            "selected": true
+          }
+        ],
+        "query": "{\"list_vs\":1}",
+        "refresh": 2,
+	"regex": "\\/.*",
+        "type": "query"
+      },
+      {
+        "current": {
+        },
+        "datasource": "$ds",
+        "hide": 0,
+        "includeAll": false,
+        "label": "IP",
+        "multi": false,
+        "name": "ip",
+        "options": [
+          {
+            "selected": true
+          }
+        ],
+        "query": "{\"list_metric\":1, \"vs\":\"$vs\", \"topic\":\"dosl7_ent_IP\", \"precision\":1000}",
+        "refresh": 2,
+        "regex": "\/^[^_].*\/",
+        "type": "query"
+      },
+      {
+        "current": {
+        },
+        "datasource": "$ds",
+        "hide": 0,
+        "includeAll": false,
+        "label": "URL",
+        "multi": false,
+        "name": "url",
+        "options": [
+          {
+            "selected": true
+          }
+        ],
+        "query": "{\"list_metric\":1, \"vs\":\"$vs\", \"topic\":\"dosl7_ent_URL\", \"precision\":1000}",
+        "refresh": 2,
+        "regex": "\/^[^_].*\/",
+        "type": "query"
+      },
+      {
+        "current": {
+         },
+        "datasource": "$ds",
+        "hide": 0,
+        "includeAll": false,
+        "label": "GEO",
+        "multi": false,
+        "name": "geo1",
+        "options": [
+          {
+            "selected": false
+          }
+        ],
+        "query": "{\"list_metric\":1, \"vs\":\"$vs\", \"topic\":\"dosl7_ent_GEO\", \"precision\":1000}",
+        "refresh": 2,
+        "regex": "\/^[^_].*\/",
+        "type": "query"
+      },
+      {
+        "current": {
+        },
+        "datasource": "$ds",
+        "hide": 0,
+        "includeAll": false,
+        "label": "GEO",
+        "multi": false,
+        "name": "geo2",
+        "options": [
+          {
+            "selected": false
+          }
+        ],
+        "query": "{\"list_metric\":1, \"vs\":\"$vs\", \"topic\":\"dosl7_ent_GEO\", \"precision\":1000}",
+        "refresh": 2,
+        "regex": "\/^[^_].*\/",
+        "type": "query"
+      }
+    ]
+  },
+  "annotations": {
+    "list": [
+      {
+        "datasource": "$ds",
+        "enable": true,
+        "iconColor": "rgba(255, 96, 96, 1)",
+        "name": "Attack",
+        "query": "{\"vs\":\"$vs\",\"topic\":\"dosl7_attack_event\", \"metric\": \"all\",\"precision\": \"default\",\"columns\":[0]}",
+        "titleColumn": "Event"
+      }
+    ]
+  },
+  "refresh": false,
+  "schemaVersion": 12,
+  "version": 54,
+  "links": [
+    {
+      "icon": "external link",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [],
+      "type": "dashboards",
+      "asDropdown": true,
+      "title": "Dashboards"
+    }
+  ],
+  "gnetId": null
+}

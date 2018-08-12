@@ -1,0 +1,46 @@
+{
+    "id": "f5-bdos-app",
+    "type": "app",
+    "name": "F5 BIG-IP ASM DDOS Visualization application",
+  
+    "info": {
+      "description": "grafana app plugin for F5 BIG-IP ASM DDOS Visualization",
+      "author": {
+        "name": "a.kruman@F5.com",
+        "url": "http://www.f5.com"
+      },
+      "keywords": ["ddos","asm","bados","admdb","f5","bigip"],
+      "logos": {
+        "small": "img/admdb_logo_large.png",
+        "large": "img/admdb_logo_large.png"
+      },
+      "version": "0.0.1",
+      "updated": "2018-07-22"
+    },
+    "includes": [
+      {
+        "type": "datasource",
+        "name": "F5 Networks BIG-IP datasource"
+      },
+      {"type": "dashboard",  "name": "Virtual Servers",       "path": "dashboards/home.json", "addToNav": true, "defaultNav": true},
+      {"type": "dashboard",  "name": "Health and Mitigations","path": "dashboards/health.json", "addToNav": true},
+      {"type": "dashboard",  "name": "HTTP and TLS Learning", "path": "dashboards/learning.json", "addToNav": true},
+      {"type": "dashboard",  "name": "Bad Actors",            "path": "dashboards/bad_actors.json", "addToNav": true},
+      {"type": "dashboard",  "name": "HTTP Signatures",       "path": "dashboards/signatures.json", "addToNav": true},
+      {"type": "dashboard",  "name": "TLS Signatures",        "path": "dashboards/signatures_tls.json","addToNav": true},
+      {"type": "dashboard",  "name": "Anomaly",               "path": "dashboards/anomaly.json", "addToNav": true},
+      {"type": "dashboard",  "name": "Signatures Topology",   "path": "dashboards/signatures_topology.json", "addToNav": true},
+
+      {"type": "dashboard",  "name": "Events",                "path": "dashboards/events.json", "addToNav": true},
+      {"type": "dashboard",  "name": "Attackers Map",         "path": "dashboards/map.json", "addToNav": true},
+      {"type": "dashboard",  "name": "TCP",                   "path": "dashboards/tcp.json", "addToNav": true},
+      {"type": "dashboard",  "name": "DOSL7",                 "path": "dashboards/dosl7d.json", "addToNav": true},
+      {"type": "dashboard",  "name": "Volumetric DOS (TPS)",  "path": "dashboards/dosl7d_tps.json", "addToNav": true}
+    ],
+  
+    "dependencies": {
+      "grafanaVersion": "5.x.x",
+      "plugins": [ ]
+    }
+  }
+  

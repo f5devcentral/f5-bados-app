@@ -1,0 +1,450 @@
+{
+  "id": null,
+  "title": "Events",
+  "tags": [],
+  "style": "dark",
+  "timezone": "browser",
+  "editable": true,
+  "hideControls": false,
+  "sharedCrosshair": true,
+  "rows": [
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "350px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": 0.5,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": 1,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)",
+            "thresholdLine": false
+          },
+          "id": 1,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Health",
+              "query": "{\"vs\":\"$vs\",\"tpms\":\"sig.health\",\"columns\":[0]}",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Health",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 10,
+              "max": 10,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 10,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "columns": [],
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "fontSize": "100%",
+          "id": 2,
+          "isNew": true,
+          "links": [],
+          "pageSize": null,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": null,
+            "desc": false
+          },
+          "span": 6,
+          "styles": [
+            {
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "decimals": 2,
+              "pattern": "/.*/",
+              "thresholds": [],
+              "type": "number",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "alias": "Event",
+              "query": "{\"vs\":\"$vs\",\"tpms\":\"info.status\", \"precision\":\"default\",\"columns\":[0]}",
+              "refId": "A"
+            }
+          ],
+          "title": "Status",
+          "transform": "timeseries_to_columns",
+          "type": "table"
+        }
+      ],
+      "title": "Row"
+    },
+    {
+      "title": "New row",
+      "height": "500px",
+      "editable": true,
+      "collapse": false,
+      "panels": [
+        {
+          "title": "Outcomes & Mitigation",
+          "error": false,
+          "span": 6,
+          "editable": true,
+          "type": "graph",
+          "isNew": true,
+          "id": 3,
+          "targets": [
+            {
+              "refId": "A",
+              "query": "{\"vs\":\"$vs\",\"tpms\":\"sig.l7actualglobaldrops\",\"columns\":[0]}",
+              "alias": "Global Rate",
+              "hide": false
+            },
+            {
+              "refId": "B",
+              "query": "{\"vs\":\"$vs\",\"tpms\":\"sig.l7actualgreylistdrops\",\"columns\":[0]}",
+              "alias": "Greylist"
+            },
+            {
+              "refId": "C",
+              "query": "{\"vs\":\"$vs\",\"tpms\":\"sig.l7actualquarantinedrops\",\"columns\":[0]}",
+              "alias": "Greylist Probation"
+            },
+            {
+              "refId": "D",
+              "query": "{\"vs\":\"$vs\",\"tpms\":\"sig.l7_signature_drops\",\"columns\":[0]}",
+              "alias": "Signatures"
+            },
+            {
+              "refId": "E",
+              "query": "{\"vs\":\"$vs\",\"tpms\":\"sig.l7_blacklist_drops\",\"columns\":[0]}",
+              "alias": "Blacklist"
+            },
+            {
+              "refId": "F",
+              "query": "{\"vs\":\"$vs\", \"tpms\":\"sig.l7dps\",\"columns\":[0]}",
+              "alias": "Uncontrolled DOS"
+            },
+            {
+              "refId": "G",
+              "query": "{\"vs\":\"$vs\",\"tpms\":\"sig.l7_server_requests\",\"columns\":[0]}",
+              "alias": "Passthrought Requests"
+            }
+          ],
+          "datasource": "$ds",
+          "renderer": "flot",
+          "yaxes": [
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": 0,
+              "max": null,
+              "format": "short"
+            },
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null,
+              "format": "short"
+            }
+          ],
+          "xaxis": {
+            "show": true
+          },
+          "grid": {
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 8,
+          "linewidth": 0,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": true,
+          "percentage": true,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false,
+            "rightSide": false
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "individual",
+            "shared": true,
+            "sort": 0,
+            "msResolution": true
+          },
+          "timeFrom": null,
+          "timeShift": null,
+          "aliasColors": {
+            "Incoming requests": "#1F78C1",
+            "Sucessful requests": "#7EB26D",
+            "Passthough requests": "#7EB26D",
+            "Greylist Mitigation": "#EAB839",
+            "Global Rate": "#E24D42",
+            "Signatures": "#E5A8E2",
+            "Uncontrolled DOS": "#052B51",
+            "Passthrought Requests": "#7EB26D"
+          },
+          "seriesOverrides": [
+            {
+              "alias": "Incoming requests",
+              "yaxis": 1
+            }
+          ],
+          "links": []
+        },
+        {
+          "title": "Events",
+          "error": false,
+          "span": 6,
+          "editable": true,
+          "type": "table",
+          "isNew": true,
+          "id": 4,
+          "targets": [
+            {
+              "refId": "A",
+              "query": "{\"vs\":\"$vs\",\"tpms\":\"greylist.ip\",\"columns\":[0], \"precision\":\"default\"}",
+              "alias": "Bad Actors"
+            },
+            {
+              "refId": "B",
+              "query": "{\"vs\":\"$vs\",\"tpms\":\"info.signature\",\"columns\":[0], \"precision\":\"default\"}",
+              "alias": "Signatures"
+            }
+          ],
+          "styles": [
+            {
+              "type": "date",
+              "pattern": "Time",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss"
+            },
+            {
+              "unit": "short",
+              "type": "number",
+              "decimals": 2,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "colorMode": null,
+              "pattern": "/.*/",
+              "thresholds": []
+            }
+          ],
+          "transform": "timeseries_to_columns",
+          "pageSize": 10,
+          "showHeader": true,
+          "columns": [],
+          "scroll": true,
+          "fontSize": "100%",
+          "sort": {
+            "col": 0,
+            "desc": true
+          },
+          "links": [],
+          "datasource": "$ds"
+        }
+      ]
+    }
+  ],
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "BIGIP",
+          "value": "BIGIP",
+          "selected": true
+        },
+        "datasource": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "BIG-IP",
+        "multi": false,
+        "name": "ds",
+        "options": [
+          {
+            "text": "BIGIP",
+            "value": "BIGIP",
+            "selected": true
+          }
+        ],
+        "query": "grafana-admdb-datasource",
+        "refresh": 1,
+        "regex": "",
+        "type": "datasource"
+      },
+      {
+        "current": {
+          "text": "/Common/ixia_cli",
+          "value": "/Common/ixia_cli",
+          "selected": false,
+          "tags": []
+        },
+        "datasource": "$ds",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Virtual Server",
+        "multi": false,
+        "name": "vs",
+        "options": [
+          {
+            "text": "all",
+            "value": "all",
+            "selected": false
+          }
+        ],
+        "query": "{\"list_vs\":1}",
+        "refresh": 1,
+        "regex": "\\/.*",
+        "type": "query"
+      }
+    ]
+  },
+  "annotations": {
+    "list": [
+      {
+        "datasource": "$ds",
+        "enable": true,
+        "iconColor": "rgba(255, 96, 96, 1)",
+        "name": "Status",
+        "query": "{\"vs\":\"$vs\",\"topic\":\"info\", \"metric\":\"status\",\"precision\": \"default\",\"columns\":[0]}",
+        "titleColumn": "Status"
+      },
+      {
+        "datasource": "$ds",
+        "enable": false,
+        "iconColor": "rgb(44, 220, 26)",
+        "name": "IP",
+        "query": "{\"vs\":\"$vs\",\"topic\":\"greylist\", \"metric\":\"ip\",\"precision\": \"default\",\"columns\":[0]}",
+        "titleColumn": "IP"
+      },
+      {
+        "datasource": "$ds",
+        "enable": true,
+        "iconColor": "rgba(255, 96, 96, 1)",
+        "name": "Signatures",
+        "query": "{\"vs\":\"$vs\",\"topic\":\"info\", \"metric\":\"signature\",\"precision\": \"default\",\"columns\":[0]}"
+      }
+    ]
+  },
+  "refresh": "10s",
+  "schemaVersion": 12,
+  "version": 0,
+  "links": [
+    {
+      "icon": "external link",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [],
+      "type": "dashboards",
+      "asDropdown": true,
+      "title": "Dashboards"
+    }
+  ],
+  "gnetId": null
+}

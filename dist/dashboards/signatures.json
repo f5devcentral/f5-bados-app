@@ -1,0 +1,440 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "datasource": "$ds",
+        "enable": true,
+        "iconColor": "rgba(255, 96, 96, 1)",
+        "name": "Status",
+        "query": "{\"vs\":\"$vs\",\"tpms\":\"info.status\",\"precision\":\"default\",\"columns\":[0]}",
+        "titleColumn": "Status"
+      },
+      {
+        "datasource": "$ds",
+        "enable": false,
+        "iconColor": "rgb(44, 220, 26)",
+        "name": "IP",
+        "query": "{\"vs\":\"$vs\",\"tpms\":\"greylist.ip\",\"columns\":[0],\"precision\":\"default\"}",
+        "titleColumn": "IP"
+      },
+      {
+        "datasource": "$ds",
+        "enable": true,
+        "iconColor": "rgba(255, 96, 96, 1)",
+        "name": "Signatures",
+        "query": "{\"vs\":\"$vs\",\"tpms\":\"info.signature\",\"columns\":[0],\"precision\":\"default\"}"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 1,
+  "hideControls": true,
+  "id": null,
+  "links": [
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [],
+      "title": "",
+      "type": "dashboards"
+    }
+  ],
+  "refresh": false,
+  "rows": [
+   {
+      "collapse": false,
+      "height": "25px",
+      "panels": [
+        {
+          "backgroundColor": "#e0e0e0",
+          "colorMaps": [
+            {
+              "color": "#e0e0e0",
+              "text": "0"
+            },
+            {
+              "color": "#f08080",
+              "text": "1"
+            },
+            {
+              "color": "#e0e0e0",
+              "text": "PEACE"
+            },
+            {
+              "color": "#E24D42",
+              "text": "ATTACK"
+            }
+          ],
+          "crosshairColor": "#8F070C",
+          "datasource": "$ds",
+          "decimals": 0,
+          "display": "timeline",
+          "expandFromQueryS": null,
+          "extendLastValue": true,
+          "hideTimeOverride": false,
+          "highlightOnMouseover": true,
+          "id": 144,
+          "legendPercentDecimals": 2,
+          "legendSortBy": "-ms",
+          "lineColor": "rgba(0,0,0,0.1)",
+          "links": [],
+          "metricNameColor": "#000000",
+          "rangeMaps": [
+            {
+              "from": "0",
+              "text": "PEACE",
+              "to": "0"
+            },
+            {
+              "from": "1",
+              "text": "ATTACK",
+              "to": "1"
+            }
+          ],
+          "rowHeight": 30,
+          "showDistinctCount": false,
+          "showLegend": true,
+          "showLegendCounts": true,
+          "showLegendNames": false,
+          "showLegendPercent": true,
+          "showLegendTime": true,
+          "showLegendValues": true,
+          "showTimeAxis": true,
+          "showTransitionCount": false,
+          "span": 12,
+          "targets": [
+            {
+              "query": "{\"vs\":\"$vs\",\"topic\":\"info\", \"metric\":\"attack\",\"columns\":[0]}",
+              "refId": "B"
+            }
+          ],
+          "textSize": 16,
+          "textSizeTime": 16,
+          "timeFrom": null,
+          "timeShift": null,
+          "timeTextColor": "#000000",
+          "title": "",
+          "transparent": true,
+          "type": "natel-discrete-panel",
+          "units": "short",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueTextColor": "#000000",
+          "writeAllValues": true,
+          "writeLastValue": true,
+          "writeMetricNames": false
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Attacks Timeline",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": "450px",
+      "panels": [
+        {
+          "aliasColors": {
+            "All Signatures": "#C15C17",
+            "Global": "#C15C17",
+            "Global-Rate": "#C15C17",
+            "Incoming requests": "#1F78C1",
+            "Rate-Limit": "#E24D42",
+            "Requests": "#1F78C1",
+            "Signatures": "#EAB839"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "fill": 6,
+          "grid": {},
+          "height": "300px",
+          "id": 3,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 0,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 1,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Requests",
+              "fill": 0,
+              "linewidth": 2,
+              "stack": false
+            }
+          ],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "query": "{\"vs\":\"$vs\",\"topic\":\"dos_stat\",\"metric_regex\":\"HTTP(?!\\\\sBaDOS\\\\sStaging)\",\"columns\":[17]}",
+              "refId": "A"
+            },
+            {
+              "query": "{\"vs\":\"$vs\",\"topic\":\"dos_stat\",\"metric_regex\":\"HTTP BaDOS Staging\",\"columns\":[17]}",
+              "refId": "B"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Signatures drops/s",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "columns": [],
+          "compactRowsEnabled": true,
+          "datasource": "$ds",
+          "datatablePagingType": "simple_numbers",
+          "datatableTheme": "basic_theme",
+          "emptyData": false,
+          "fontSize": "100%",
+          "hoverEnabled": true,
+          "id": 4,
+          "infoEnabled": true,
+          "lengthChangeEnabled": true,
+          "links": [],
+          "orderColumnEnabled": true,
+          "pagingTypes": [
+            {
+              "text": "Page number buttons only",
+              "value": "numbers"
+            },
+            {
+              "text": "'Previous' and 'Next' buttons only",
+              "value": "simple"
+            },
+            {
+              "text": "'Previous' and 'Next' buttons, plus page numbers",
+              "value": "simple_numbers"
+            },
+            {
+              "text": "'First', 'Previous', 'Next' and 'Last' buttons",
+              "value": "full"
+            },
+            {
+              "text": "'First', 'Previous', 'Next' and 'Last' buttons, plus page numbers",
+              "value": "full_numbers"
+            },
+            {
+              "text": "'First' and 'Last' buttons, plus page numbers",
+              "value": "first_last_numbers"
+            }
+          ],
+          "panelHeight": 434,
+          "rowNumbersEnabled": false,
+          "rowsPerPage": 15,
+          "scroll": false,
+          "scrollHeight": "default",
+          "searchEnabled": true,
+          "showCellBorders": false,
+          "showHeader": true,
+          "showRowBorders": true,
+          "sort": {
+            "col": 0,
+            "desc": true
+          },
+          "span": 12,
+          "stripedRowsEnabled": true,
+          "styles": [
+            {
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "date"
+            }
+          ],
+          "targets": [
+            {
+              "query": "{\"table_columns\":[\"#samples\", \"request\", \"predicates\"], \"series2table\":\"noTime\", \"vs\":\"$vs\",\"topic\":\"traffic_sample\",\"metric\":\"http.matched_signature\",\"columns\":\"*\", \"precision\":\"default\", \"row_transform\":\"http_request_format\"}",
+              "refId": "A"
+            }
+          ],
+          "themeOptions": {
+            "dark": "./css/datatable-dark.css",
+            "light": "./css/datatable-light.css"
+          },
+          "themes": [
+            {
+              "disabled": false,
+              "text": "Basic",
+              "value": "basic_theme"
+            },
+            {
+              "disabled": true,
+              "text": "Bootstrap",
+              "value": "bootstrap_theme"
+            },
+            {
+              "disabled": true,
+              "text": "Foundation",
+              "value": "foundation_theme"
+            },
+            {
+              "disabled": true,
+              "text": "ThemeRoller",
+              "value": "themeroller_theme"
+            }
+          ],
+          "title": "",
+          "transform": "table",
+          "type": "f5-briangann-datatable-panel"
+        }
+      ],
+      "repeat": "ms",
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "SIGNATURES",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [
+    "Signatures",
+    "HTTP"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": true,
+          "text": "BIGIP1",
+          "value": "BIGIP1"
+        },
+        "datasource": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "BIG-IP",
+        "multi": false,
+        "name": "ds",
+        "options": [],
+        "query": "grafana-admdb-datasource",
+        "refresh": 1,
+        "regex": "",
+        "type": "datasource"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "tags": [],
+          "text": "/Common/phpbb_10gb_lan+/Common/bados",
+          "value": "/Common/phpbb_10gb_lan+/Common/bados"
+        },
+        "datasource": "$ds",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "vs",
+        "options": [],
+        "query": "{\"list_vs\":1}",
+        "refresh": 1,
+        "regex": "\\/.*",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "HTTP Signatures",
+  "version": 0
+}
