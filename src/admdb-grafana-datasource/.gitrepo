@@ -5,7 +5,7 @@
 ;
 [subrepo]
 	remote = git@gitswarm.f5net.com:kruman/admdb-grafana-datasource.git
-	branch = app
-	commit = 7bed7593af8934d1da2fdde0f4feeeb2438162a1
-	parent = 6b94398bbeba36c3bfdeff66cebfbca1a9ddaac3
+	branch = app-evergreen
+	commit = b023eb222064efa7c46632dc43e6a0fb1ffe0a4e
+	parent = 53b6970c9b6f6ee0c3dbe2474246f21ca5626394
 	cmdver = 0.3.1
