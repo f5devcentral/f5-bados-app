@@ -10,8 +10,8 @@ grafana-cli --pluginUrl https://github.com/akruman/grafana-diagram/archive/1.4.4
 grafana-cli --pluginUrl https://github.com/akruman/grafana-datatable-panel/archive/v0.0.6.f5.zip plugins install f5-briangann-datatable-panel
 
 ```
-2. Restart your Grafana server.
-3. Configure data source per each BIG-IP
+3. Restart your Grafana server.
+4. Configure data source per each BIG-IP
     - type: F5 Networks BIG-IP datasource
     - name: name your datasource
     - url: https://<ip>/ to your BIG-IP managment
