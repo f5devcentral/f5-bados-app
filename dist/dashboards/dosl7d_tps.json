@@ -1,0 +1,785 @@
+{
+  "id": null,
+  "title": "Volumetric DOS (TPS)",
+  "tags": [],
+  "style": "dark",
+  "timezone": "browser",
+  "editable": true,
+  "hideControls": false,
+  "sharedCrosshair": true,
+  "rows": [
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {
+            "AVG1hour": "#6D1F62",
+            "AVG1min": "#6ED0E0",
+            "Bados Baseline": "#EAB839",
+            "Bados Requests": "#1F78C1",
+            "Current": "#1F78C1",
+            "Threshold": "#E24D42"
+          },
+          "bars": false,
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 2,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Current"
+            },
+            {
+              "alias": "AVG1min",
+              "fill": 2
+            },
+            {
+              "alias": "AVG1hour"
+            },
+            {
+              "alias": "Threshold",
+              "linewidth": 3
+            },
+            {
+              "alias": "Bados Baseline",
+              "linewidth": 3
+            }
+          ],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Threshold",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_auto_thresh_tps.all\",\"columns\":[\"v5\"]}",
+              "refId": "A"
+            },
+            {
+              "alias": "Current",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_max_ent_tps.all\",\"columns\":[\"v14\"]}",
+              "refId": "B"
+            },
+            {
+              "alias": "AVG1min",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_max_ent_tps.all\",\"columns\":[\"v15\"]}",
+              "refId": "C"
+            },
+            {
+              "alias": "AVG1hour",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_max_ent_tps.all\",\"columns\":[\"v15\"]}",
+              "refId": "D"
+            },
+            {
+              "alias": "Bados Baseline",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"base.tps\",\"columns\":[\"v0\"]}",
+              "refId": "F"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Site-Wide",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 10,
+              "max": null,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {
+            "AVG1hour": "#6D1F62",
+            "AVG1min": "#6ED0E0",
+            "Current": "#1F78C1",
+            "Threshold": "#E24D42"
+          },
+          "bars": false,
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 3,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Current"
+            },
+            {
+              "alias": "AVG1min",
+              "fill": 2
+            },
+            {
+              "alias": "AVG1hour"
+            },
+            {
+              "alias": "Threshold",
+              "linewidth": 3
+            }
+          ],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Current",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_max_ent_tps.all\",\"columns\":[\"v11\"]}",
+              "refId": "B"
+            },
+            {
+              "alias": "AVG1min",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_max_ent_tps.all\",\"columns\":[\"v12\"]}",
+              "refId": "C"
+            },
+            {
+              "alias": "AVG1hour",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_max_ent_tps.all\",\"columns\":[\"v13\"]}",
+              "refId": "D"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Geo",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {
+            "AVG1hour": "#6D1F62",
+            "AVG1min": "#6ED0E0",
+            "Current": "#1F78C1",
+            "Threshold": "#E24D42"
+          },
+          "bars": false,
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 4,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Current"
+            },
+            {
+              "alias": "AVG1min",
+              "fill": 2
+            },
+            {
+              "alias": "AVG1hour"
+            },
+            {
+              "alias": "Threshold",
+              "linewidth": 3
+            }
+          ],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Threshold",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_auto_thresh_tps.all\",\"columns\":[\"v4\"]}",
+              "refId": "A"
+            },
+            {
+              "alias": "Current",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_max_ent_tps.all\",\"columns\":[\"v8\"]}",
+              "refId": "B"
+            },
+            {
+              "alias": "AVG1min",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_max_ent_tps.all\",\"columns\":[\"v9\"]}",
+              "refId": "C"
+            },
+            {
+              "alias": "AVG1hour",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_max_ent_tps.all\",\"columns\":[\"v10\"]}",
+              "refId": "D"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "URL",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 10,
+              "max": null,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {
+            "AVG1hour": "#6D1F62",
+            "AVG1min": "#6ED0E0",
+            "Current": "#1F78C1",
+            "Threshold": "#E24D42"
+          },
+          "bars": false,
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 5,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Current"
+            },
+            {
+              "alias": "AVG1min",
+              "fill": 2
+            },
+            {
+              "alias": "AVG1hour"
+            },
+            {
+              "alias": "Threshold",
+              "linewidth": 3
+            }
+          ],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Threshold",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_auto_thresh_tps.all\",\"columns\":[\"v2\"]}",
+              "refId": "A"
+            },
+            {
+              "alias": "Current",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_max_ent_tps.all\",\"columns\":[\"v2\"]}",
+              "refId": "B"
+            },
+            {
+              "alias": "AVG1min",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_max_ent_tps.all\",\"columns\":[\"v3\"]}",
+              "refId": "C"
+            },
+            {
+              "alias": "AVG1hour",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_max_ent_tps.all\",\"columns\":[\"v4\"]}",
+              "refId": "D"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "IP",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 10,
+              "max": null,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "title": "Row"
+    }
+  ],
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "BIGIP1",
+          "value": "BIGIP1"
+        },
+        "datasource": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "BIG-IP",
+        "multi": false,
+        "name": "ds",
+        "options": [
+          {
+            "text": "BIGIP1",
+            "value": "BIGIP1",
+            "selected": true
+          },
+          {
+            "text": "peter-qkview",
+            "value": "peter-qkview",
+            "selected": false
+          }
+        ],
+        "query": "grafana-admdb-datasource",
+        "refresh": 1,
+        "regex": "",
+        "type": "datasource"
+      },
+      {
+        "current": {
+          "text": "/Common/phpbb_10gb_lan+/Common/bados",
+          "value": "/Common/phpbb_10gb_lan+/Common/bados"
+        },
+        "datasource": "$ds",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Virtual Server",
+        "multi": false,
+        "name": "vs",
+        "options": [
+          {
+            "text": "/Common/phpbb_10gb_lan+/Common/bados",
+            "value": "/Common/phpbb_10gb_lan+/Common/bados",
+            "selected": true
+          },
+          {
+            "text": "/Common/phpbb_10gb_lan+/Common/tcp",
+            "value": "/Common/phpbb_10gb_lan+/Common/tcp",
+            "selected": false
+          },
+          {
+            "text": "/Common/phpbb_10gb_lan1+/Common/bados",
+            "value": "/Common/phpbb_10gb_lan1+/Common/bados",
+            "selected": false
+          },
+          {
+            "text": "/Common/phpbb_10gb_lan1+/Common/tcp",
+            "value": "/Common/phpbb_10gb_lan1+/Common/tcp",
+            "selected": false
+          },
+          {
+            "text": "_listener+/Common/f5-tcp-lan",
+            "value": "_listener+/Common/f5-tcp-lan",
+            "selected": false
+          },
+          {
+            "text": "_listener+/Common/f5-tcp-mobile",
+            "value": "_listener+/Common/f5-tcp-mobile",
+            "selected": false
+          },
+          {
+            "text": "_listener+/Common/f5-tcp-progressive",
+            "value": "_listener+/Common/f5-tcp-progressive",
+            "selected": false
+          },
+          {
+            "text": "_listener+/Common/f5-tcp-wan",
+            "value": "_listener+/Common/f5-tcp-wan",
+            "selected": false
+          },
+          {
+            "text": "_listener+/Common/mptcp-mobile-optimized",
+            "value": "_listener+/Common/mptcp-mobile-optimized",
+            "selected": false
+          },
+          {
+            "text": "_listener+/Common/splitsession-default-tcp",
+            "value": "_listener+/Common/splitsession-default-tcp",
+            "selected": false
+          },
+          {
+            "text": "_listener+/Common/tcp",
+            "value": "_listener+/Common/tcp",
+            "selected": false
+          },
+          {
+            "text": "_listener+/Common/tcp-lan-optimized",
+            "value": "_listener+/Common/tcp-lan-optimized",
+            "selected": false
+          },
+          {
+            "text": "_listener+/Common/tcp-legacy",
+            "value": "_listener+/Common/tcp-legacy",
+            "selected": false
+          },
+          {
+            "text": "_listener+/Common/tcp-mobile-optimized",
+            "value": "_listener+/Common/tcp-mobile-optimized",
+            "selected": false
+          },
+          {
+            "text": "_listener+/Common/tcp-wan-optimized",
+            "value": "_listener+/Common/tcp-wan-optimized",
+            "selected": false
+          },
+          {
+            "text": "_listener+/Common/wam-tcp-lan-optimized",
+            "value": "_listener+/Common/wam-tcp-lan-optimized",
+            "selected": false
+          },
+          {
+            "text": "_listener+/Common/wam-tcp-wan-optimized",
+            "value": "_listener+/Common/wam-tcp-wan-optimized",
+            "selected": false
+          },
+          {
+            "text": "_listener+/Common/wom-tcp-lan-optimized",
+            "value": "_listener+/Common/wom-tcp-lan-optimized",
+            "selected": false
+          },
+          {
+            "text": "_listener+/Common/wom-tcp-wan-optimized",
+            "value": "_listener+/Common/wom-tcp-wan-optimized",
+            "selected": false
+          },
+          {
+            "text": "_listener+_cgctcp_in",
+            "value": "_listener+_cgctcp_in",
+            "selected": false
+          },
+          {
+            "text": "_listener+_cgctcp_out",
+            "value": "_listener+_cgctcp_out",
+            "selected": false
+          },
+          {
+            "text": "_listener+_ecm_tcp",
+            "value": "_listener+_ecm_tcp",
+            "selected": false
+          },
+          {
+            "text": "_listener+_gtmtcp",
+            "value": "_listener+_gtmtcp",
+            "selected": false
+          },
+          {
+            "text": "_listener+_km_tcp",
+            "value": "_listener+_km_tcp",
+            "selected": false
+          },
+          {
+            "text": "_listener+_mcptcp",
+            "value": "_listener+_mcptcp",
+            "selected": false
+          },
+          {
+            "text": "_listener+_mntrtunnel_tcp",
+            "value": "_listener+_mntrtunnel_tcp",
+            "selected": false
+          },
+          {
+            "text": "_listener+_pingaccess_tcp",
+            "value": "_listener+_pingaccess_tcp",
+            "selected": false
+          },
+          {
+            "text": "_listener+_tcp4_ha_defaults",
+            "value": "_listener+_tcp4_ha_defaults",
+            "selected": false
+          },
+          {
+            "text": "_listener+_tmm_antserver_tcp",
+            "value": "_listener+_tmm_antserver_tcp",
+            "selected": false
+          },
+          {
+            "text": "_listener+_tmm_apm_portal_tcp",
+            "value": "_listener+_tmm_apm_portal_tcp",
+            "selected": false
+          },
+          {
+            "text": "_listener+_tmm_firepass_memcached_internal_tcp",
+            "value": "_listener+_tmm_firepass_memcached_internal_tcp",
+            "selected": false
+          },
+          {
+            "text": "_listener+_woctunnel_tcp",
+            "value": "_listener+_woctunnel_tcp",
+            "selected": false
+          },
+          {
+            "text": "_listener+mpitcp",
+            "value": "_listener+mpitcp",
+            "selected": false
+          },
+          {
+            "text": "_listener+rcptcp",
+            "value": "_listener+rcptcp",
+            "selected": false
+          },
+          {
+            "text": "_listener+swgtcp",
+            "value": "_listener+swgtcp",
+            "selected": false
+          },
+          {
+            "text": "_listener+tcp",
+            "value": "_listener+tcp",
+            "selected": false
+          },
+          {
+            "text": "_listener+waptcp",
+            "value": "_listener+waptcp",
+            "selected": false
+          },
+          {
+            "text": "_tmm_apm_fwd_vip_http+/Common/apm-forwarding-client-tcp",
+            "value": "_tmm_apm_fwd_vip_http+/Common/apm-forwarding-client-tcp",
+            "selected": false
+          },
+          {
+            "text": "_tmm_apm_fwd_vip_http+/Common/apm-forwarding-server-tcp",
+            "value": "_tmm_apm_fwd_vip_http+/Common/apm-forwarding-server-tcp",
+            "selected": false
+          },
+          {
+            "text": "_tmm_apm_fwd_vip_http_ipv6+/Common/apm-forwarding-client-tcp",
+            "value": "_tmm_apm_fwd_vip_http_ipv6+/Common/apm-forwarding-client-tcp",
+            "selected": false
+          },
+          {
+            "text": "_tmm_apm_fwd_vip_http_ipv6+/Common/apm-forwarding-server-tcp",
+            "value": "_tmm_apm_fwd_vip_http_ipv6+/Common/apm-forwarding-server-tcp",
+            "selected": false
+          },
+          {
+            "text": "_tmm_apm_oauth_as_admin_vip+_tmm_apm_oauth_tcp",
+            "value": "_tmm_apm_oauth_as_admin_vip+_tmm_apm_oauth_tcp",
+            "selected": false
+          },
+          {
+            "text": "_tmm_apm_portal_cache_vip+_tmm_apm_portal_tcp",
+            "value": "_tmm_apm_portal_cache_vip+_tmm_apm_portal_tcp",
+            "selected": false
+          },
+          {
+            "text": "all",
+            "value": "all",
+            "selected": false
+          }
+        ],
+        "query": "{\"list_vs\":1}",
+        "refresh": 1,
+        "regex": "\\/.*",
+        "type": "query"
+      }
+    ]
+  },
+
+  "annotations": {
+    "list": [
+      {
+        "datasource": "$ds",
+        "enable": true,
+        "iconColor": "rgba(255, 96, 96, 1)",
+        "name": "Status",
+        "query": "{\"vs\":\"$vs\",\"metric\":\"info.status\",\"columns\":[\"v0\"]}",
+        "titleColumn": "Status"
+      }
+    ]
+  },
+  "refresh": "5s",
+  "schemaVersion": 12,
+  "version": 14,
+  "links": [
+     
+  ],
+  "gnetId": null
+}

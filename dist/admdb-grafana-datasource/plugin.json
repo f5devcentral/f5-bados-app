@@ -1,0 +1,31 @@
+{
+  "id": "grafana-admdb-datasource",
+  "type": "datasource",
+  "name": "F5 Networks BIG-IP datasource",
+
+  "staticRoot": ".",
+
+  "defaultMatchFormat": "regex values",
+  "metrics": true,
+  "annotations": true,
+
+  "info": {
+    "description": "Datasource plugin for F5 Networks BIG-IP Behavioral DOS Visibility",
+    "author": {
+      "name": "Alexander Kruman F5",
+      "url": "http://www.f5.com"
+    },
+    "keywords": ["admdb"],
+    "logos": {
+      "small": "img/admdb_logo_large.png",
+      "large": "img/admdb_logo_large.png"
+    },
+    "version": "1.2.5.app.evergreen",
+    "updated": "2018-08-18"
+  },
+
+  "dependencies": {
+    "grafanaVersion": "3.1.1",
+    "plugins": [ ]
+  }
+}

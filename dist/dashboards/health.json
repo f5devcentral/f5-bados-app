@@ -1,0 +1,1371 @@
+{
+  "id": null,
+  "title": "Health and Mitigations",
+  "tags": [],
+  "style": "dark",
+  "timezone": "browser",
+  "editable": true,
+  "hideControls": false,
+  "sharedCrosshair": true,
+  "rows": [
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "25px",
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "$ds",
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 1,
+          "interval": null,
+          "isNew": true,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "alias": "",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"info.attack\",\"columns\":[\"v0\"]}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": "0.5,1",
+          "timeFrom": "10s",
+          "timeShift": null,
+          "title": "Attack",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            },
+            {
+              "op": "=",
+              "text": "PEACE",
+              "value": "0"
+            },
+            {
+              "op": "=",
+              "text": "ATTACK",
+              "value": "1"
+            }
+          ],
+          "valueName": "max"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "$ds",
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 3,
+          "interval": null,
+          "isNew": true,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "query": "{\"vs\":\"$vs\",\"metric\":\"sig.health\",\"columns\":[\"v0\"]}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": "0.5,1",
+          "timeFrom": "10s",
+          "title": "Health",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "max"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 4,
+          "interval": null,
+          "isNew": true,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "%",
+          "postfixFontSize": "80%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "query": "{\"vs\":\"$vs\",\"metric\":\"info.learning\",\"columns\":[\"v0\"]}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": "30,70",
+          "timeFrom": "10s",
+          "title": "Threshold Learning",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "max"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 5,
+          "interval": null,
+          "isNew": true,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "query": "{\"vs\":\"$vs\",\"metric\":\"info.learning\",\"columns\":[\"v2\"]}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": "2000,3000",
+          "timeFrom": "10s",
+          "title": "Samples collected",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "max"
+        }
+      ],
+      "showTitle": true,
+      "title": "Status"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {
+            "Baseline": "#EAB839",
+            "Incoming requests": "#0A437C",
+            "Other mitigations": "#E24D42",
+            "Sucessful transactions": "#7EB26D",
+            "Uncontrolled DOS": "#052B51",
+            "Whitelist": "#64B0C8"
+          },
+          "bars": false,
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 2,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Uncontrolled DOS",
+              "fill": 10
+            },
+            {
+              "alias": "Incoming requests"
+            },
+            {
+              "alias": "Sucessful transactions",
+              "fill": 6,
+              "linewidth": 0
+            },
+            {
+              "alias": "Baseline",
+              "linewidth": 3
+            },
+            {
+              "alias": "Whitelist",
+              "fill": 10,
+              "zindex": -1
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Incoming requests",
+              "query": "{\"vs\":\"$vs\", \"metric\":\"sig.l7requests\",\"columns\":[\"v0\"]}",
+              "refId": "A"
+            },
+            {
+              "alias": "Uncontrolled DOS",
+              "query": "{\"vs\":\"$vs\", \"metric\":\"sig.l7dps\",\"columns\":[\"v0\"]}",
+              "refId": "B"
+            },
+            {
+              "alias": "Baseline",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"base.tps\",\"columns\":[\"v0\"]}",
+              "refId": "C"
+            },
+            {
+              "alias": "Sucessful transactions",
+              "query": "{\"vs\":\"$vs\", \"metric\":\"sig.tps\",\"columns\":[\"v0\"]}",
+              "refId": "D"
+            },
+            {
+              "alias": "Whitelist",
+              "query": "{\"vs\":\"$vs\", \"metric\":\"sig.whitelist_count\",\"columns\":[\"v0\"]}",
+              "refId": "E"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Client HTTP Transactions/s",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {
+            "Current-Shared": "#7EB26D",
+            "Baseline-Shared": "#EAB839"
+          },
+          "bars": false,
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 6,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Baseline",
+              "stack": "B",
+              "linewidth": 3
+            },
+            {
+              "alias": "Baseline-Shared",
+              "stack": "B",
+              "linewidth": 3
+            },
+            {
+              "alias": "Current-Shared",
+              "fill": 3,
+              "stack": "A"
+            },
+            {
+              "alias": "Current-Private",
+              "stack": "A",
+              "fill": 5
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Current-Private",
+              "query": "{\"vs\":\"$vs\", \"metric\":\"sig.conns\",\"columns\":[\"v0\"]}",
+              "refId": "A"
+            },
+            {
+              "alias": "Baseline",
+              "query": "{\"vs\":\"$vs\", \"metric\":\"base.conns\",\"columns\":[\"v0\"]}",
+              "refId": "B"
+            },
+            {
+              "alias": "Bad-Actors",
+              "query": "{\"vs\":\"$vs\", \"metric\":\"sig.server_grey_conns\",\"columns\":[\"v0\"]}",
+              "refId": "C"
+            },
+            {
+              "alias": "Current-Shared",
+              "query": "{\"vs\":\"$vs\", \"metric\":\"sig.shared_conns\",\"columns\":[\"v0\"]}",
+              "refId": "D"
+            },
+            {
+              "refId": "E",
+              "query": "{\"vs\":\"$vs\", \"metric\":\"base.shared_conns\",\"columns\":[\"v0\"]}",
+              "alias": "Baseline-Shared"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Concurrent server-side connections",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {
+            "Incoming requests": "#1F78C1",
+            "Passthrought Requests": "#7EB26D",
+            "RPS Threshold": "#E24D42",
+            "Uncontrolled DOS": "#052B51"
+          },
+          "bars": false,
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 7,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Uncontrolled DOS",
+              "fill": 10,
+              "yaxis": 1
+            },
+            {
+              "alias": "Incoming requests",
+              "yaxis": 1
+            },
+            {
+              "alias": "RPS Threshold",
+              "linewidth": 3,
+              "yaxis": 1
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Incoming requests",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"sig.l7requests\",\"columns\":[\"v0\"]}",
+              "refId": "A"
+            },
+            {
+              "alias": "Uncontrolled DOS",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"sig.l7dps\",\"columns\":[\"v0\"]}",
+              "refId": "B"
+            },
+            {
+              "alias": "Passthrought Requests",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"sig.l7_server_requests\",\"columns\":[\"v0\"]}",
+              "refId": "C"
+            },
+            {
+              "alias": "RPS Threshold",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"threshold.tps\",\"columns\":[\"v0\"]}",
+              "refId": "D"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "HTTP Requests",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "",
+              "logBase": 10,
+              "max": null,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "showTitle": true,
+      "title": "Base Metrics"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "fill": 2,
+          "grid": {
+            "threshold1": 0.5,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": 1,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 8,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Health",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"sig.health\",\"columns\":[\"v0\"]}",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Health",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 10,
+              "max": 10,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {
+            "Absolute sampled queue length": "#052B51"
+          },
+          "bars": false,
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 9,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Absolute sampled queue length",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"sig.pending_counter\",\"columns\":[\"v0\"]}",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Server queue",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            }
+          ]
+        },
+        {
+          "title": "Server HTTP Transactions",
+          "error": false,
+          "span": 4,
+          "editable": true,
+          "type": "graph",
+          "isNew": true,
+          "id": 13,
+          "targets": [
+            {
+              "refId": "A",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"sig.l7_server_requests\",\"columns\":[\"v0\"]}",
+              "alias": "Requests"
+            },
+            {
+              "refId": "B",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"base.tps\",\"columns\":[\"v0\"]}",
+              "alias": "Base"
+            },
+            {
+              "refId": "C",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"sig.tps\",\"columns\":[\"v0\"]}",
+              "alias": "Responses"
+            },
+            {
+              "refId": "D",
+              "query": "{\"vs\":\"$vs\", \"metric\":\"sig.l7dps\",\"columns\":[\"v0\"]}",
+              "alias": "Deny of Service"
+            }
+          ],
+          "datasource": "$ds",
+          "renderer": "flot",
+          "yaxes": [
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null,
+              "format": "short"
+            },
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null,
+              "format": "short"
+            }
+          ],
+          "xaxis": {
+            "show": true
+          },
+          "grid": {
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": true,
+            "sort": 0,
+            "msResolution": true
+          },
+          "timeFrom": null,
+          "timeShift": null,
+          "aliasColors": {
+            "Requests": "#6ED0E0",
+            "Responses": "#7EB26D",
+            "Deny of Service": "#052B51"
+          },
+          "seriesOverrides": [
+            {
+              "alias": "Deny of Service",
+              "fill": 8
+            },
+            {
+              "alias": "Base",
+              "linewidth": 3
+            },
+            {
+              "alias": "Responses",
+              "fill": 4
+            },
+            {
+              "alias": "Requests",
+              "linewidth": 2
+            }
+          ],
+          "links": []
+        }
+      ],
+      "showTitle": true,
+      "title": "Health"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {
+            "Dropped packets": "#6ED0E0"
+          },
+          "bars": false,
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "fill": 6,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 10,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 0,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 4,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Dropped packets",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"sig.l3actualgreylistpktdrops\",\"columns\":[\"v0\"]}",
+              "refId": "A"
+            },
+            {
+              "alias": "Fast Signatures",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"sig.fast_signature_drops\",\"columns\":[\"v0\"]}",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Layer-3 Mitigations",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {
+            "Blacklist": "#052B51",
+            "Other Mitigation": "#EF843C",
+            "Signatures": "#AEA2E0",
+            "Unclassified IP's (controlled DOS)": "#E24D42"
+          },
+          "bars": false,
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "fill": 6,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 11,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 0,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Unclassified IP's (controlled DOS)",
+              "yaxis": 1
+            }
+          ],
+          "span": 4,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Unclassified IP's (controlled DOS)",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"sig.l7actualglobaldrops\",\"columns\":[\"v0\"]}",
+              "refId": "A"
+            },
+            {
+              "alias": "Bad actors IP's",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"sig.l7actualgreylistdrops\",\"columns\":[\"v0\"]}",
+              "refId": "B"
+            },
+            {
+              "alias": "Quarantine",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"sig.l7actualquarantinedrops\",\"columns\":[\"v0\"]}",
+              "refId": "C"
+            },
+            {
+              "alias": "Signatures",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"sig.l7_signature_drops\",\"columns\":[\"v0\"]}",
+              "refId": "D"
+            },
+            {
+              "alias": "Blacklist",
+              "hide": false,
+              "query": "{\"vs\":\"$vs\",\"metric\":\"sig.blacklist_drops\",\"columns\":[\"v0\"]}",
+              "refId": "E"
+            },
+            {
+              "alias": "Other Mitigation",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"sig.dosl7_drops\",\"columns\":[\"v0\"]}",
+              "refId": "F"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "HTTP Rate Limit",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 10,
+              "max": null,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {
+            "Bad actors IP's": "#EAB839",
+            "Unclassified IP's (controlled DOS)": "#E24D42"
+          },
+          "bars": false,
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "fill": 6,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 12,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 0,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 4,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Unclassified IP's (controlled DOS)",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"sig.conn_drops\",\"columns\":[\"v0\"]}",
+              "refId": "A"
+            },
+            {
+              "alias": "Bad actors IP's",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"sig.grey_conns_drops\",\"columns\":[\"v0\"]}",
+              "refId": "B"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Connections",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "showTitle": true,
+      "title": "Mitigations"
+    }
+  ],
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "BIGIP1",
+          "value": "BIGIP1",
+          "selected": true
+        },
+        "datasource": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "BIG-IP",
+        "multi": false,
+        "name": "ds",
+        "options": [
+          {
+            "text": "BIGIP1",
+            "value": "BIGIP1",
+            "selected": true
+          }
+        ],
+        "query": "grafana-admdb-datasource",
+        "refresh": 1,
+        "regex": "",
+        "type": "datasource"
+      },
+      {
+        "datasource": "$ds",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "vs",
+        "options": [
+          {
+            "text": "all",
+            "value": "all",
+            "selected": false
+          }
+        ],
+        "query": "{\"list_vs\":1}",
+        "regex": "\\/.*",
+        "refresh": 1,
+        "type": "query",
+        "current": {
+          "selected": false
+        }
+      }
+    ]
+  },
+  "annotations": {
+    "list": [
+      {
+        "datasource": "$ds",
+        "enable": true,
+        "iconColor": "rgba(255, 96, 96, 1)",
+        "name": "Status",
+        "query": "{\"vs\":\"$vs\",\"metric\":\"info.status\",\"columns\":[\"v0\"]}",
+        "titleColumn": "Status"
+      },
+      {
+        "datasource": "$ds",
+        "enable": false,
+        "iconColor": "rgb(44, 220, 26)",
+        "name": "IP",
+        "query": "{\"vs\":\"$vs\",\"metric\":\"greylist.ip\",\"columns\":[\"v0\"]}",
+        "titleColumn": "IP"
+      },
+      {
+        "datasource": "$ds",
+        "enable": true,
+        "iconColor": "rgba(255, 96, 96, 1)",
+        "name": "Signatures",
+        "query": "{\"vs\":\"$vs\",\"metric\":\"info.signature\",\"columns\":[\"v0\"]}"
+      }
+    ]
+  },
+  "refresh": "5s",
+  "schemaVersion": 12,
+  "version": 12,
+  "links": [
+    
+  ],
+  "gnetId": null
+}

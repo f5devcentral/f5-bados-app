@@ -1,0 +1,299 @@
+{
+  "id": null,
+  "title": "Signatures Topology",
+  "tags": [],
+  "style": "dark",
+  "timezone": "browser",
+  "editable": true,
+  "hideControls": false,
+  "sharedCrosshair": true,
+  "rows": [
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "content": "",
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "format": "none",
+          "graphId": "diagram_1",
+          "id": 1,
+          "init": {
+            "arrowMarkerAbsolute": true,
+            "cloneCssStyles": false,
+            "flowchart": {
+              "htmlLabels": true,
+              "useMaxWidth": true
+            },
+            "gantt": {
+              "barGap": 4,
+              "barHeight": 20,
+              "fontFamily": "\"Open-Sans\", \"sans-serif\"",
+              "fontSize": 11,
+              "gridLineStartPadding": 35,
+              "leftPadding": 75,
+              "numberSectionStyles": 3,
+              "titleTopMargin": 25,
+              "topPadding": 50
+            },
+            "logLevel": 3,
+            "sequenceDiagram": {
+              "actorMargin": 50,
+              "bottomMarginAdj": 1,
+              "boxMargin": 10,
+              "boxTextMargin": 5,
+              "diagramMarginX": 50,
+              "diagramMarginY": 10,
+              "height": 65,
+              "messageMargin": 35,
+              "mirrorActors": true,
+              "noteMargin": 10,
+              "useMaxWidth": true,
+              "width": 150
+            },
+            "startOnLoad": false
+          },
+          "isNew": true,
+          "legend": {
+            "avg": true,
+            "current": true,
+            "gradient": {
+              "enabled": true,
+              "show": true
+            },
+            "max": true,
+            "min": true,
+            "show": false,
+            "total": true
+          },
+          "links": [],
+          "mappingType": 1,
+          "maxDataPoints": 100,
+          "maxWidth": false,
+          "nullPointMode": "connected",
+          "seriesOverrides": [],
+          "span": 12,
+          "targets": [
+            {
+              "alias": "",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"info.topology\",\"columns\":[\"v0\"]}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": "0,10",
+          "title": "",
+          "type": "f5-jdbranham-diagram-panel",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg",
+          "valueOptions": [
+            "avg",
+            "min",
+            "max",
+            "total",
+            "current"
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "fill": 5,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 2,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 0,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": true,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 12,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "query": "{\"vs\":\"$vs\",\"metric_regex\":\"dos_stat.\",\"columns\":[\"v13\"]}",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Signature distribution (all)",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "title": "Row"
+    }
+  ],
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "templating": {
+    "list": [
+      {
+        "current": {
+        },
+        "datasource": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "BIG-IP",
+        "multi": false,
+        "name": "ds",
+        "options": [
+          {
+          }
+        ],
+        "query": "grafana-admdb-datasource",
+        "refresh": 1,
+        "regex": "",
+        "type": "datasource"
+      },
+      {
+        "type": "query",
+        "datasource": "$ds",
+        "refresh": 1,
+        "name": "vs",
+        "hide": 0,
+        "options": [
+        ],
+        "includeAll": false,
+        "multi": false,
+        "label": "Virtual Server",
+        "query": "{\"list_vs\":1}",
+        "current": {
+        },
+        "regex": ""
+      }
+    ]
+  },
+  "annotations": {
+    "list": [
+      {
+        "datasource": "$ds",
+        "enable": true,
+        "iconColor": "rgba(255, 96, 96, 1)",
+        "name": "Status",
+        "query": "{\"vs\":\"$vs\",\"metric\":\"info.status\",\"columns\":[\"v0\"]}",
+        "titleColumn": "Status"
+      },
+      {
+        "datasource": "$ds",
+        "enable": true,
+        "iconColor": "rgba(255, 96, 96, 1)",
+        "name": "Signatures",
+        "query": "{\"vs\":\"$vs\",\"metric\":\"info.signature\",\"columns\":[\"v0\"]}"
+      },
+      {
+        "datasource": "$ds",
+        "enable": false,
+        "iconColor": "rgb(96, 255, 111)",
+        "name": "IP",
+        "query": "{\"vs\":\"$vs\",\"metric\":\"greylist.ip\",\"columns\":[\"v0\"]}",
+        "titleColumn": "IP"
+      },
+      {
+        "datasource": "$ds",
+        "enable": true,
+        "iconColor": "rgb(0, 0, 0)",
+        "name": "Topology change",
+        "query": "{\"vs\":\"$vs\",\"metric\":\"info.topology\",\"columns\":[\"v0\"]}",
+        "titleColumn": "Topology"
+      }
+    ]
+  },
+  "refresh": "10s",
+  "schemaVersion": 12,
+  "version": 15,
+  "links": [
+    
+  ],
+  "gnetId": null
+}
