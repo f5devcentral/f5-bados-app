@@ -1,310 +1,563 @@
 {
-  "__inputs": [],
-  "__requires": [
-    {
-      "type": "panel",
-      "id": "dashlist",
-      "name": "Dashboard list",
-      "version": "5.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "f5-briangann-datatable-panel",
-      "name": "Datatable Panel",
-      "version": "0.0.6.f5"
-    },
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "5.2.1"
-    },
-    {
-      "type": "panel",
-      "id": "text",
-      "name": "Text",
-      "version": "5.0.0"
-    }
-  ],
-  "annotations": {
-    "list": [
-      {
-        "builtIn": 1,
-        "datasource": "-- Grafana --",
-        "enable": true,
-        "hide": true,
-        "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations & Alerts",
-        "type": "dashboard"
-      },
-      {
-        "datasource": "$ds",
-        "enable": true,
-        "iconColor": "rgb(255, 0, 0)",
-        "name": "Status",
-        "query": "{\"vs\":\"all\",\"topic\":\"info\", \"metric\": \"status\",\"precision\": \"default\",\"columns\":[0]}",
-        "titleColumn": "Status"
-      }
-    ]
-  },
-  "editable": true,
-  "gnetId": null,
-  "graphTooltip": 1,
   "id": null,
-  "iteration": 1533207790012,
-  "links": [
-    {
-      "asDropdown": true,
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [],
-      "title": "Dashboards",
-      "type": "dashboards"
-    }
-  ],
-  "panels": [
-    {
-      "columns": [],
-      "compactRowsEnabled": false,
-      "datasource": "$ds",
-      "datatablePagingType": "simple_numbers",
-      "datatableTheme": "basic_theme",
-      "emptyData": false,
-      "fontSize": "130%",
-      "gridPos": {
-        "h": 8,
-        "w": 18,
-        "x": 0,
-        "y": 0
-      },
-      "hoverEnabled": true,
-      "id": 11,
-      "infoEnabled": true,
-      "lengthChangeEnabled": true,
-      "links": [],
-      "orderColumnEnabled": true,
-      "pagingTypes": [
-        {
-          "text": "Page number buttons only",
-          "value": "numbers"
-        },
-        {
-          "text": "'Previous' and 'Next' buttons only",
-          "value": "simple"
-        },
-        {
-          "text": "'Previous' and 'Next' buttons, plus page numbers",
-          "value": "simple_numbers"
-        },
-        {
-          "text": "'First', 'Previous', 'Next' and 'Last' buttons",
-          "value": "full"
-        },
-        {
-          "text": "'First', 'Previous', 'Next' and 'Last' buttons, plus page numbers",
-          "value": "full_numbers"
-        },
-        {
-          "text": "'First' and 'Last' buttons, plus page numbers",
-          "value": "first_last_numbers"
-        }
-      ],
-      "panelHeight": 281,
-      "rowNumbersEnabled": false,
-      "rowsPerPage": 15,
-      "scroll": false,
-      "scrollHeight": "default",
-      "searchEnabled": true,
-      "showCellBorders": true,
-      "showHeader": true,
-      "showRowBorders": false,
-      "sort": {
-        "col": 0,
-        "desc": true
-      },
-      "stripedRowsEnabled": false,
-      "styles": [
-        {
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "pattern": "Time",
-          "type": "date"
-        },
-        {
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "column": "vs",
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "link": true,
-          "pattern": "vs",
-          "sanitize": false,
-          "thresholds": [],
-          "type": "string",
-          "unit": "short",
-          "url": "/dashboard/db/health-and-mitigations?from=now-5m&to=now&var-vs={encodeURIComponent}"
-        },
-        {
-          "colorMode": null,
-          "colors": [
-            "rgba(50, 172, 45, 0.97)",
-            "rgba(255, 0, 0, 0.89)",
-            "rgba(245, 54, 54, 0.9)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "pattern": "Attack",
-          "thresholds": [
-            "1"
-          ],
-          "type": "number",
-          "unit": "short"
-        },
-        {
-          "colorMode": "cell",
-          "colors": [
-            "rgba(50, 172, 45, 0.97)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(245, 54, 54, 0.9)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "pattern": "Health",
-          "thresholds": [
-            "0.5",
-            "1"
-          ],
-          "type": "number",
-          "unit": "short"
-        },
-        {
-          "colorMode": "cell",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "pattern": "/.*/",
-          "thresholds": [],
-          "type": "number",
-          "unit": "short"
-        }
-      ],
-      "targets": [
-        {
-          "alias": "Attack",
-          "query": "{\"tpms\":\"info.attack\", \"columns\":[0], \"table\":1, \"vs_regex\":\"^/.*\"}",
-          "refId": "A"
-        },
-        {
-          "alias": "Health",
-          "query": "{\"tpms\":\"sig.health\", \"columns\":[0], \"table\":1}",
-          "refId": "B"
-        }
-      ],
-      "themeOptions": {
-        "dark": "./css/datatable-dark.css",
-        "light": "./css/datatable-light.css"
-      },
-      "themes": [
-        {
-          "disabled": false,
-          "text": "Basic",
-          "value": "basic_theme"
-        },
-        {
-          "disabled": true,
-          "text": "Bootstrap",
-          "value": "bootstrap_theme"
-        },
-        {
-          "disabled": true,
-          "text": "Foundation",
-          "value": "foundation_theme"
-        },
-        {
-          "disabled": true,
-          "text": "ThemeRoller",
-          "value": "themeroller_theme"
-        }
-      ],
-      "title": "Virtual Servers",
-      "transform": "table",
-      "transparent": true,
-      "type": "f5-briangann-datatable-panel"
-    },
-    {
-      "folderId": null,
-      "gridPos": {
-        "h": 16,
-        "w": 6,
-        "x": 18,
-        "y": 0
-      },
-      "headings": true,
-      "id": 12,
-      "limit": 15,
-      "links": [],
-      "query": "",
-      "recent": false,
-      "search": true,
-      "starred": false,
-      "tags": [],
-      "title": "Dashboards",
-      "transparent": true,
-      "type": "dashlist"
-    },
-    {
-      "content": "<div class=\"text-center dashboard-header\">\n  <span>Ver: 2_75 Behavioral (D)DoS protection visualization panel</span>\n</div>\n\nTo add new BIG-IP to for visualization please follow these steps:\n<ul>\n    <li>SSH to your BIG-IP</li>\n     <li>tmsh modify sys db adm.cloud.host value local</li>\n     <li><a href=\"/datasources/new\">Add new data source</a></li>\n</ul>\n</div>To enable traffic samples run the following command on BIG-IP:<br/><br/>\n\n<code>\ntmsh modify sys db admdb.debug.traffic.sample value enable</code>",
-      "editable": true,
-      "error": false,
-      "gridPos": {
-        "h": 6,
-        "w": 18,
-        "x": 0,
-        "y": 8
-      },
-      "id": 4,
-      "links": [],
-      "mode": "html",
-      "title": "",
-      "transparent": true,
-      "type": "text"
-    }
-  ],
-  "refresh": "10s",
-  "schemaVersion": 16,
+  "title": "Home",
+  "tags": [],
   "style": "dark",
-  "tags": [
-    "Virtual Servers"
-  ],
-  "templating": {
-    "list": [
-      {
-        "allFormat": "glob",
-        "current": {
-          "text": "asd",
-          "value": "asd"
+  "timezone": "browser",
+  "editable": true,
+  "hideControls": false,
+  "sharedCrosshair": true,
+  "rows": [
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "columns": [],
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "fontSize": "150%",
+          "height": "20px",
+          "hideTimeOverride": false,
+          "id": 5,
+          "isNew": true,
+          "links": [],
+          "minSpan": 12,
+          "pageSize": null,
+          "repeat": null,
+          "scopedVars": {},
+          "scroll": false,
+          "showHeader": true,
+          "sort": {
+            "col": 1,
+            "desc": false
+          },
+          "span": 12,
+          "styles": [
+            {
+              "colorMode": "row",
+              "colors": [
+                "rgba(50, 172, 45, 0.97)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(245, 54, 54, 0.9)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 1,
+              "pattern": "Attack",
+              "thresholds": [
+                "0.5",
+                "1"
+              ],
+              "type": "number",
+              "unit": "none"
+            },
+            {
+              "colorMode": "cell",
+              "colors": [
+                "rgba(50, 172, 45, 0.97)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(245, 54, 54, 0.9)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 2,
+              "pattern": "Health",
+              "thresholds": [
+                "0.5",
+                "1"
+              ],
+              "type": "number",
+              "unit": "short"
+            },
+            {
+              "colorMode": "cell",
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 2,
+              "pattern": "Learning",
+              "thresholds": [
+                "30",
+                "70"
+              ],
+              "type": "number",
+              "unit": "short"
+            },
+            {
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 2,
+              "pattern": "vs",
+              "sanitize": true,
+              "thresholds": [],
+              "type": "string",
+              "unit": "short"
+            },
+            {
+              "colorMode": "cell",
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 2,
+              "pattern": "Learned samples",
+              "thresholds": [
+                "2000",
+                "3000"
+              ],
+              "type": "number",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "alias": "Attack",
+              "hide": false,
+              "query": "{\"metric\":\"info.attack\", \"columns\":[\"v0\"], \"table\":1}",
+              "refId": "A"
+            },
+            {
+              "alias": "Health",
+              "hide": false,
+              "query": "{\"metric\":\"sig.health\", \"columns\":[\"v0\"], \"table\":1}",
+              "refId": "B"
+            },
+            {
+              "alias": "Learning",
+              "hide": false,
+              "query": "{\"metric\":\"info.learning\", \"columns\":[\"v0\"], \"table\":1}",
+              "refId": "C"
+            },
+            {
+              "alias": "Learned samples",
+              "query": "{\"metric\":\"info.learning\", \"columns\":[\"v2\"], \"table\":1}",
+              "refId": "D"
+            }
+          ],
+          "timeFrom": "5m",
+          "title": "",
+          "transform": "table",
+          "transparent": true,
+          "type": "table"
         },
-        "datasource": null,
-        "hide": 0,
-        "label": "BIG-IP",
-        "multi": false,
-        "name": "ds",
-        "options": [],
-        "query": "grafana-admdb-datasource",
-        "refresh": 1,
-        "regex": "",
-        "type": "datasource"
-      }
-    ]
-  },
+        {
+          "aliasColors": {
+            "all/info.greylistsize": "#2F575E"
+          },
+          "bars": false,
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "fill": 3,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "height": "400",
+          "hideTimeOverride": false,
+          "id": 6,
+          "isNew": true,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 4,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 1,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "query": "{\"vs\":\"all\",\"metric\":\"info.greylistsize\",\"columns\":[\"v0\"]}",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Bad Actors for ($ds)",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": false
+            }
+          ]
+        },
+        {
+          "columns": [],
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "fontSize": "100%",
+          "height": "400",
+          "id": 10,
+          "isNew": true,
+          "links": [],
+          "pageSize": null,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": 0,
+            "desc": true
+          },
+          "span": 8,
+          "styles": [
+            {
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "decimals": 2,
+              "pattern": "/.*/",
+              "thresholds": [],
+              "type": "number",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "alias": "Status",
+              "query": "{\"vs\":\"all\",\"metric\":\"info.status\",\"columns\":[\"v0\"]}",
+              "refId": "A"
+            }
+          ],
+          "title": "Events",
+          "transform": "timeseries_to_columns",
+          "transparent": true,
+          "type": "table"
+        },
+        {
+          "aliasColors": {
+            "Daemon usage (ms/30s)": "#1F78C1"
+          },
+          "bars": false,
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "fill": 2,
+          "grid": {
+            "threshold1": 150,
+            "threshold1Color": "rgba(216, 200, 27, 0.86)",
+            "threshold2": 400,
+            "threshold2Color": "rgba(253, 0, 0, 0.22)",
+            "thresholdLine": true
+          },
+          "id": 8,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 4,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Daemon usage (ms/30s)",
+              "query": "{\"vs\":\"all\",\"metric\":\"info.sysinfo\",\"columns\":[\"v4\"]}",
+              "refId": "B"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "CPU Usage",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": 500,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {
+            "RSS": "#1F78C1",
+            "VMSize": "#052B51"
+          },
+          "bars": false,
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "fill": 2,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 7,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 4,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "VMSize",
+              "fill": 0
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "VMSize",
+              "query": "{\"vs\":\"all\",\"metric\":\"info.sysinfo\",\"columns\":[\"v0\"]}",
+              "refId": "A",
+              "hide": true
+            },
+            {
+              "alias": "RSS",
+              "query": "{\"vs\":\"all\",\"metric\":\"info.sysinfo\",\"columns\":[\"v1\"]}",
+              "refId": "B"
+            },
+            {
+              "alias": "Swap",
+              "query": "{\"vs\":\"all\",\"metric\":\"info.sysinfo\",\"columns\":[\"v2\"]}",
+              "refId": "C",
+              "hide": false
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Behavioral Module Memory usage",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "kbytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {
+            "Daemon IO usage (IOPS)": "#1F78C1"
+          },
+          "bars": false,
+          "datasource": "$ds",
+          "editable": true,
+          "error": false,
+          "fill": 2,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 9,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 4,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Daemon IO usage (IOPS)",
+              "query": "{\"vs\":\"all\",\"metric\":\"info.sysinfo\",\"columns\":[\"v3\"]}",
+              "refId": "B"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "IO Usage",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "showTitle": true,
+      "title": "Viirtual Server List"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "110px",
+      "panels": [
+        {
+          "content": "<div class=\"text-center dashboard-header\">\n  <span>Behavioral (D)DoS protection visualization panel</span>\n</div>\n\nTo add new BIG-IP to for visualization please follow these steps:\n<ul>\n    <li>SSH to your BIG-IP</li>\n     <li>tmsh modify sys db adm.cloud.host value local</li>\n     <li><a href=\"/datasources/new\">Add new data source</a></li>\n</ul>\n",
+          "editable": true,
+          "error": false,
+          "id": 4,
+          "isNew": true,
+          "links": [],
+          "mode": "html",
+          "span": 12,
+          "title": "",
+          "transparent": true,
+          "type": "text"
+        }
+      ],
+      "title": "Row"
+    }
+  ],
   "time": {
     "from": "now-5m",
     "to": "now"
@@ -336,8 +589,68 @@
     ],
     "type": "timepicker"
   },
-  "timezone": "browser",
-  "title": "Virtual Servers",
-  "uid": null,
-  "version": 1
+  "templating": {
+    "list": [
+      {
+        "allFormat": "glob",
+        "current": {
+          "text": "BIGIP1",
+          "value": "BIGIP1"
+        },
+        "datasource": null,
+        "hide": 0,
+        "label": "BIG-IP",
+        "multi": false,
+        "name": "ds",
+        "options": [
+          {
+            "text": "BIGIP1",
+            "value": "BIGIP1",
+            "selected": true
+          },
+          {
+            "text": "guy",
+            "value": "guy",
+            "selected": false
+          },
+          {
+            "text": "nick",
+            "value": "nick",
+            "selected": false
+          }
+        ],
+        "query": "grafana-admdb-datasource",
+        "refresh": 1,
+        "regex": "",
+        "type": "datasource"
+      }
+    ]
+  },
+  "annotations": {
+    "list": [
+      {
+        "datasource": "$ds",
+        "enable": true,
+        "iconColor": "rgb(255, 0, 0)",
+        "name": "Status",
+        "query": "{\"vs\":\"all\",\"metric\":\"info.status\",\"columns\":[\"v0\"]}",
+        "titleColumn": "Status"
+      }
+    ]
+  },
+  "refresh": "10s",
+  "schemaVersion": 12,
+  "version": 0,
+  "links": [
+    {
+      "icon": "external link",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [],
+      "type": "dashboards",
+      "asDropdown": true,
+      "title": "Dashboards"
+    }
+  ],
+  "gnetId": null
 }

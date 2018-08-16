@@ -1,5 +1,5 @@
 {
-  "id": null,
+  "id": 2,
   "title": "Signatures Topology",
   "tags": [],
   "style": "dark",
@@ -84,13 +84,13 @@
           "targets": [
             {
               "alias": "",
-              "query": "{\"vs\":\"$vs\",\"tpms\":\"info.topology\",\"precision\": \"default\",\"columns\":[0]}",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"info.topology\",\"columns\":[\"v0\"]}",
               "refId": "A"
             }
           ],
           "thresholds": "0,10",
           "title": "",
-          "type": "f5-jdbranham-diagram-panel",
+          "type": "jdbranham-diagram-panel",
           "valueMaps": [
             {
               "op": "=",
@@ -98,7 +98,7 @@
               "value": "null"
             }
           ],
-          "valueName": "current",
+          "valueName": "avg",
           "valueOptions": [
             "avg",
             "min",
@@ -147,7 +147,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "query": "{\"vs\":\"$vs\",\"topic\":\"dos_stat\", \"metric_regex\":\"\",\"columns\":[17]}",
+              "query": "{\"vs\":\"$vs\",\"metric_regex\":\"dos_stat.\",\"columns\":[\"v13\"]}",
               "refId": "A"
             }
           ],
@@ -250,7 +250,7 @@
         "query": "{\"list_vs\":1}",
         "current": {
         },
-        "regex": "\\/.*"
+        "regex": ""
       }
     ]
   },
@@ -261,7 +261,7 @@
         "enable": true,
         "iconColor": "rgba(255, 96, 96, 1)",
         "name": "Status",
-        "query": "{\"vs\":\"$vs\",\"tpms\":\"info.status\",\"precision\":\"default\",\"columns\":[0]}",
+        "query": "{\"vs\":\"$vs\",\"metric\":\"info.status\",\"columns\":[\"v0\"]}",
         "titleColumn": "Status"
       },
       {
@@ -269,22 +269,22 @@
         "enable": true,
         "iconColor": "rgba(255, 96, 96, 1)",
         "name": "Signatures",
-        "query": "{\"vs\":\"$vs\",\"tpms\":\"info.signature\",\"columns\":[0],\"precision\":\"default\"}"
+        "query": "{\"vs\":\"$vs\",\"metric\":\"info.signature\",\"columns\":[\"v0\"]}"
       },
       {
         "datasource": "$ds",
         "enable": false,
         "iconColor": "rgb(96, 255, 111)",
         "name": "IP",
-        "query": "{\"vs\":\"$vs\",\"tpms\":\"greylist.ip\",\"columns\":[0],\"precision\":\"default\"}",
+        "query": "{\"vs\":\"$vs\",\"metric\":\"greylist.ip\",\"columns\":[\"v0\"]}",
         "titleColumn": "IP"
       },
       {
         "datasource": "$ds",
-        "enable": false,
+        "enable": true,
         "iconColor": "rgb(0, 0, 0)",
         "name": "Topology change",
-        "query": "{\"vs\":\"$vs\",\"tpms\":\"info.topology\",\"columns\":[0],\"precision\":\"default\"}",
+        "query": "{\"vs\":\"$vs\",\"metric\":\"info.topology\",\"columns\":[\"v0\"]}",
         "titleColumn": "Topology"
       }
     ]
@@ -294,13 +294,12 @@
   "version": 15,
   "links": [
     {
+      "asDropdown": true,
       "icon": "external link",
       "includeVars": true,
       "keepTime": true,
       "tags": [],
-      "type": "dashboards",
-      "asDropdown": true,
-      "title": "Dashboards"
+      "type": "dashboards"
     }
   ],
   "gnetId": null

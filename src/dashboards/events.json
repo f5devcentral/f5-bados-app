@@ -53,7 +53,7 @@
           "targets": [
             {
               "alias": "Health",
-              "query": "{\"vs\":\"$vs\",\"tpms\":\"sig.health\",\"columns\":[0]}",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"sig.health\",\"columns\":[\"v0\"]}",
               "refId": "A"
             }
           ],
@@ -129,7 +129,7 @@
           "targets": [
             {
               "alias": "Event",
-              "query": "{\"vs\":\"$vs\",\"tpms\":\"info.status\", \"precision\":\"default\",\"columns\":[0]}",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"info.status\",\"columns\":[\"v0\"]}",
               "refId": "A"
             }
           ],
@@ -157,38 +157,38 @@
           "targets": [
             {
               "refId": "A",
-              "query": "{\"vs\":\"$vs\",\"tpms\":\"sig.l7actualglobaldrops\",\"columns\":[0]}",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"sig.l7actualglobaldrops\",\"columns\":[\"v0\"]}",
               "alias": "Global Rate",
               "hide": false
             },
             {
               "refId": "B",
-              "query": "{\"vs\":\"$vs\",\"tpms\":\"sig.l7actualgreylistdrops\",\"columns\":[0]}",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"sig.l7actualgreylistdrops\",\"columns\":[\"v0\"]}",
               "alias": "Greylist"
             },
             {
               "refId": "C",
-              "query": "{\"vs\":\"$vs\",\"tpms\":\"sig.l7actualquarantinedrops\",\"columns\":[0]}",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"sig.l7actualquarantinedrops\",\"columns\":[\"v0\"]}",
               "alias": "Greylist Probation"
             },
             {
               "refId": "D",
-              "query": "{\"vs\":\"$vs\",\"tpms\":\"sig.l7_signature_drops\",\"columns\":[0]}",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"sig.l7_signature_drops\",\"columns\":[\"v0\"]}",
               "alias": "Signatures"
             },
             {
               "refId": "E",
-              "query": "{\"vs\":\"$vs\",\"tpms\":\"sig.l7_blacklist_drops\",\"columns\":[0]}",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"sig.l7_blacklist_drops\",\"columns\":[\"v0\"]}",
               "alias": "Blacklist"
             },
             {
               "refId": "F",
-              "query": "{\"vs\":\"$vs\", \"tpms\":\"sig.l7dps\",\"columns\":[0]}",
+              "query": "{\"vs\":\"$vs\", \"metric\":\"sig.l7dps\",\"columns\":[\"v0\"]}",
               "alias": "Uncontrolled DOS"
             },
             {
               "refId": "G",
-              "query": "{\"vs\":\"$vs\",\"tpms\":\"sig.l7_server_requests\",\"columns\":[0]}",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"sig.l7_server_requests\",\"columns\":[\"v0\"]}",
               "alias": "Passthrought Requests"
             }
           ],
@@ -278,12 +278,12 @@
           "targets": [
             {
               "refId": "A",
-              "query": "{\"vs\":\"$vs\",\"tpms\":\"greylist.ip\",\"columns\":[0], \"precision\":\"default\"}",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"greylist.ip\",\"columns\":[\"v0\"]}",
               "alias": "Bad Actors"
             },
             {
               "refId": "B",
-              "query": "{\"vs\":\"$vs\",\"tpms\":\"info.signature\",\"columns\":[0], \"precision\":\"default\"}",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"info.signature\",\"columns\":[\"v0\"]}",
               "alias": "Signatures"
             }
           ],
@@ -412,7 +412,7 @@
         "enable": true,
         "iconColor": "rgba(255, 96, 96, 1)",
         "name": "Status",
-        "query": "{\"vs\":\"$vs\",\"topic\":\"info\", \"metric\":\"status\",\"precision\": \"default\",\"columns\":[0]}",
+        "query": "{\"vs\":\"$vs\",\"metric\":\"info.status\",\"columns\":[\"v0\"]}",
         "titleColumn": "Status"
       },
       {
@@ -420,7 +420,7 @@
         "enable": false,
         "iconColor": "rgb(44, 220, 26)",
         "name": "IP",
-        "query": "{\"vs\":\"$vs\",\"topic\":\"greylist\", \"metric\":\"ip\",\"precision\": \"default\",\"columns\":[0]}",
+        "query": "{\"vs\":\"$vs\",\"metric\":\"greylist.ip\",\"columns\":[\"v0\"]}",
         "titleColumn": "IP"
       },
       {
@@ -428,7 +428,7 @@
         "enable": true,
         "iconColor": "rgba(255, 96, 96, 1)",
         "name": "Signatures",
-        "query": "{\"vs\":\"$vs\",\"topic\":\"info\", \"metric\":\"signature\",\"precision\": \"default\",\"columns\":[0]}"
+        "query": "{\"vs\":\"$vs\",\"metric\":\"info.signature\",\"columns\":[\"v0\"]}"
       }
     ]
   },

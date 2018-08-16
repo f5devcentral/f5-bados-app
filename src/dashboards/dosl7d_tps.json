@@ -1,5 +1,5 @@
 {
-  "id": null,
+  "id": 1,
   "title": "Volumetric DOS (TPS)",
   "tags": [],
   "style": "dark",
@@ -78,27 +78,27 @@
           "targets": [
             {
               "alias": "Threshold",
-              "query": "{\"vs\":\"$vs\",\"topic\":\"dosl7d_auto_thresh_tps\", \"metric\":\"all\",\"columns\":[5]}",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_auto_thresh_tps.all\",\"columns\":[\"v5\"]}",
               "refId": "A"
             },
             {
               "alias": "Current",
-              "query": "{\"vs\":\"$vs\",\"topic\":\"dosl7d_max_ent_tps\", \"metric\":\"all\",\"columns\":[14]}",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_max_ent_tps.all\",\"columns\":[\"v14\"]}",
               "refId": "B"
             },
             {
               "alias": "AVG1min",
-              "query": "{\"vs\":\"$vs\",\"topic\":\"dosl7d_max_ent_tps\", \"metric\":\"all\",\"columns\":[15]}",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_max_ent_tps.all\",\"columns\":[\"v15\"]}",
               "refId": "C"
             },
             {
               "alias": "AVG1hour",
-              "query": "{\"vs\":\"$vs\",\"topic\":\"dosl7d_max_ent_tps\", \"metric\":\"all\",\"columns\":[15]}",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_max_ent_tps.all\",\"columns\":[\"v15\"]}",
               "refId": "D"
             },
             {
               "alias": "Bados Baseline",
-              "query": "{\"vs\":\"$vs\",\"topic\":\"base\", \"metric\":\"tps\",\"columns\":[0]}",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"base.tps\",\"columns\":[\"v0\"]}",
               "refId": "F"
             }
           ],
@@ -193,17 +193,17 @@
           "targets": [
             {
               "alias": "Current",
-              "query": "{\"vs\":\"$vs\",\"topic\":\"dosl7d_max_ent_tps\", \"metric\":\"all\",\"columns\":[11]}",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_max_ent_tps.all\",\"columns\":[\"v11\"]}",
               "refId": "B"
             },
             {
               "alias": "AVG1min",
-              "query": "{\"vs\":\"$vs\",\"topic\":\"dosl7d_max_ent_tps\", \"metric\":\"all\",\"columns\":[12]}",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_max_ent_tps.all\",\"columns\":[\"v12\"]}",
               "refId": "C"
             },
             {
               "alias": "AVG1hour",
-              "query": "{\"vs\":\"$vs\",\"topic\":\"dosl7d_max_ent_tps\", \"metric\":\"all\",\"columns\":[13]}",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_max_ent_tps.all\",\"columns\":[\"v13\"]}",
               "refId": "D"
             }
           ],
@@ -298,22 +298,22 @@
           "targets": [
             {
               "alias": "Threshold",
-              "query": "{\"vs\":\"$vs\",\"topic\":\"dosl7d_auto_thresh_tps\", \"metric\":\"all\",\"columns\":[4]}",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_auto_thresh_tps.all\",\"columns\":[\"v4\"]}",
               "refId": "A"
             },
             {
               "alias": "Current",
-              "query": "{\"vs\":\"$vs\",\"topic\":\"dosl7d_max_ent_tps\", \"metric\":\"all\",\"columns\":[8]}",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_max_ent_tps.all\",\"columns\":[\"v8\"]}",
               "refId": "B"
             },
             {
               "alias": "AVG1min",
-              "query": "{\"vs\":\"$vs\",\"topic\":\"dosl7d_max_ent_tps\", \"metric\":\"all\",\"columns\":[9]}",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_max_ent_tps.all\",\"columns\":[\"v9\"]}",
               "refId": "C"
             },
             {
               "alias": "AVG1hour",
-              "query": "{\"vs\":\"$vs\",\"topic\":\"dosl7d_max_ent_tps\", \"metric\":\"all\",\"columns\":[10]}",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_max_ent_tps.all\",\"columns\":[\"v10\"]}",
               "refId": "D"
             }
           ],
@@ -408,22 +408,22 @@
           "targets": [
             {
               "alias": "Threshold",
-              "query": "{\"vs\":\"$vs\",\"topic\":\"dosl7d_auto_thresh_tps\", \"metric\":\"all\",\"columns\":[2]}",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_auto_thresh_tps.all\",\"columns\":[\"v2\"]}",
               "refId": "A"
             },
             {
               "alias": "Current",
-              "query": "{\"vs\":\"$vs\",\"topic\":\"dosl7d_max_ent_tps\", \"metric\":\"all\",\"columns\":[2]}",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_max_ent_tps.all\",\"columns\":[\"v2\"]}",
               "refId": "B"
             },
             {
               "alias": "AVG1min",
-              "query": "{\"vs\":\"$vs\",\"topic\":\"dosl7d_max_ent_tps\", \"metric\":\"all\",\"columns\":[3]}",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_max_ent_tps.all\",\"columns\":[\"v3\"]}",
               "refId": "C"
             },
             {
               "alias": "AVG1hour",
-              "query": "{\"vs\":\"$vs\",\"topic\":\"dosl7d_max_ent_tps\", \"metric\":\"all\",\"columns\":[4]}",
+              "query": "{\"vs\":\"$vs\",\"metric\":\"dosl7d_max_ent_tps.all\",\"columns\":[\"v4\"]}",
               "refId": "D"
             }
           ],
@@ -770,7 +770,7 @@
         "enable": true,
         "iconColor": "rgba(255, 96, 96, 1)",
         "name": "Status",
-        "query": "{\"vs\":\"$vs\",\"topic\":\"info\", \"metric\":\"status\",\"precision\": \"default\",\"columns\":[0]}",
+        "query": "{\"vs\":\"$vs\",\"metric\":\"info.status\",\"columns\":[\"v0\"]}",
         "titleColumn": "Status"
       }
     ]
