@@ -1,12 +1,13 @@
 # F5 BIG-IP ASM DDOS Visualization application for grafana
 ## Installation
-1. Use the grafana-cli tool to install bados app and its dependencies from the commandline:
+1. Install latest grafana (this tested with 5.2.2, should be fine with version 5.x.x)
+2. Use the grafana-cli tool to install bados app and its dependencies from the commandline:
 ```
-grafana-cli.exe plugins install grafana-worldmap-panel 0.1.2
+grafana-cli plugins install grafana-worldmap-panel 0.1.2
 grafana-cli plugins install natel-discrete-panel 0.0.8-pre
-grafana-cli.exe --pluginUrl https://github.com/akruman/f5-bados-app/archive/master.zip plugins install f5-bados-app
-grafana-cli.exe --pluginUrl https://github.com/akruman/grafana-diagram/archive/1.4.4.f5.zip plugins install f5-jdbranham-diagram-panel
-grafana-cli.exe --pluginUrl https://github.com/akruman/grafana-datatable-panel/archive/v0.0.6.f5.zip plugins install f5-briangann-datatable-panel
+grafana-cli --pluginUrl https://github.com/akruman/f5-bados-app/archive/master.zip plugins install f5-bados-app
+grafana-cli --pluginUrl https://github.com/akruman/grafana-diagram/archive/1.4.4.f5.zip plugins install f5-jdbranham-diagram-panel
+grafana-cli --pluginUrl https://github.com/akruman/grafana-datatable-panel/archive/v0.0.6.f5.zip plugins install f5-briangann-datatable-panel
 
 ```
 2. Restart your Grafana server.
