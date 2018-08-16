@@ -1,5 +1,5 @@
 {
-  "id": 1,
+  "id": null,
   "title": "Volumetric DOS (TPS)",
   "tags": [],
   "style": "dark",
@@ -779,15 +779,7 @@
   "schemaVersion": 12,
   "version": 14,
   "links": [
-     {
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [],
-      "type": "dashboards",
-      "asDropdown": true,
-      "title": "Dashboards"
-    }
+     
   ],
   "gnetId": null
 }

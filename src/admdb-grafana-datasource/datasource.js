@@ -303,8 +303,8 @@ function (angular, _, dateMath, AdmQueryBuilder, geohash, countries, states) {
       series = _.map(series, function (v, i) { return v; })
       // cut the points that are anyway not shown in the graph
       for(var si=0;si<series.length;si++){
-        var x = _.sortedIndex(series[si].datapoints,    [555, from], function(x){return x[1];}); // TBD: check that this search works correctly
-        var y = _.sortedIndex(series[si].datapoints,    [555, to+1], function(x){return x[1];});
+        var x = _.sortedIndexBy(series[si].datapoints,    [555, from], function(x){return x[1];}); // TBD: check that this search works correctly
+        var y = _.sortedIndexBy(series[si].datapoints,    [555, to+1], function(x){return x[1];});
         series[si].datapoints = series[si].datapoints.splice(x,y);
       }
 

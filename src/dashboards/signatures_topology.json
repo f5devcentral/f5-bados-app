@@ -1,5 +1,5 @@
 {
-  "id": 2,
+  "id": null,
   "title": "Signatures Topology",
   "tags": [],
   "style": "dark",
@@ -90,7 +90,7 @@
           ],
           "thresholds": "0,10",
           "title": "",
-          "type": "jdbranham-diagram-panel",
+          "type": "f5-jdbranham-diagram-panel",
           "valueMaps": [
             {
               "op": "=",
@@ -293,14 +293,7 @@
   "schemaVersion": 12,
   "version": 15,
   "links": [
-    {
-      "asDropdown": true,
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [],
-      "type": "dashboards"
-    }
+    
   ],
   "gnetId": null
 }

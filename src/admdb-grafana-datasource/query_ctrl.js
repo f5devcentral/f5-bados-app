@@ -29,7 +29,7 @@ function (angular, sdk, AdmQueryBuilder) {
     AdmDBQueryCtrl.prototype = Object.create(_super.prototype);
     AdmDBQueryCtrl.prototype.constructor = AdmDBQueryCtrl;
 
-    AdmDBQueryCtrl.templateUrl = 'partials/query.editor.html';
+    AdmDBQueryCtrl.templateUrl = 'admdb-grafana-datasource/partials/query.editor.html';
 
     AdmDBQueryCtrl.prototype.toggleEditorMode = function () {
       this.target.rawQuery = !this.target.rawQuery;

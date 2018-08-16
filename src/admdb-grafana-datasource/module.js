@@ -6,13 +6,13 @@ function(AdmDbDatasource, AdmDBQueryCtrl) {
   'use strict';
 
   var AdmDBConfigCtrl = function() {}
-  AdmDBConfigCtrl.templateUrl = "partials/config.html";
+  AdmDBConfigCtrl.templateUrl = "admdb-grafana-datasource/partials/config.html";
 
   //var AdmDBQueryOptionsCtrl = function() {}
   //AdmDBQueryOptionsCtrl.templateUrl = "partials/query.options.html";
 
   var AdmDBAnnotationsCtrl = function() {}
-  AdmDBAnnotationsCtrl.templateUrl = "partials/annotations.editor.html";
+  AdmDBAnnotationsCtrl.templateUrl = "admdb-grafana-datasource/partials/annotations.editor.html";
 
   return {
     'Datasource': AdmDbDatasource,

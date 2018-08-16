@@ -1,5 +1,5 @@
 {
-  "id": 1,
+  "id": null,
   "title": "Health and Mitigations",
   "tags": [],
   "style": "dark",
@@ -1365,15 +1365,7 @@
   "schemaVersion": 12,
   "version": 12,
   "links": [
-    {
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [],
-      "type": "dashboards",
-      "asDropdown": true,
-      "title": "Dashboards"
-    }
+    
   ],
   "gnetId": null
 }

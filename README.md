@@ -1,13 +1,11 @@
-# F5 BIG-IP ASM DDOS Visualization application for grafana
+# F5 BIG-IP evergreen ASM DDOS Visualization application 
 ## Installation
 1. Use the grafana-cli tool to install bados app and its dependencies from the commandline:
 ```
-grafana-cli.exe plugins install grafana-worldmap-panel 0.1.2
-grafana-cli plugins install natel-discrete-panel 0.0.8-pre
-grafana-cli.exe --pluginUrl https://github.com/akruman/f5-bados-app/archive/master.zip plugins install f5-bados-app
-grafana-cli.exe --pluginUrl https://github.com/akruman/grafana-diagram/archive/1.4.4.f5.zip plugins install f5-jdbranham-diagram-panel
-grafana-cli.exe --pluginUrl https://github.com/akruman/grafana-datatable-panel/archive/v0.0.6.f5.zip plugins install f5-briangann-datatable-panel
-
+grafana-cli plugins install grafana-piechart-panel
+grafana-cli plugins install grafana-worldmap-panel 0.1.2
+grafana-cli --pluginUrl https://github.com/akruman/f5-bados-app/archive/evergreen.zip plugins install f5-bados-evergreen-app
+grafana-cli --pluginUrl https://github.com/akruman/grafana-diagram/archive/1.4.4.f5.zip plugins install f5-jdbranham-diagram-panel
 ```
 2. Restart your Grafana server.
 3. Configure data source per each BIG-IP
@@ -27,5 +25,5 @@ grafana-cli.exe --pluginUrl https://github.com/akruman/grafana-datatable-panel/a
 
 ## App creation:
 - tracking datasource and dashboards in the branch="app".
-- git subrepo clone git@gitswarm.f5net.com:kruman/admdb-grafana-datasource.git src/admdb-grafana-datasource -b app
-- git subrepo clone git@gitswarm.f5net.com:kruman/admdb-grafana-dashboard.git src/dashboards -b app
+- git subrepo clone git@gitswarm.f5net.com:kruman/admdb-grafana-datasource.git src/admdb-grafana-datasource -b app-evergreen
+- git subrepo clone git@gitswarm.f5net.com:kruman/admdb-grafana-dashboard.git src/dashboards -b app-evergreen

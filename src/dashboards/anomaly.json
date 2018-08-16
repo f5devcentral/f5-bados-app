@@ -1,5 +1,5 @@
 {
-  "id": 1,
+  "id": null,
   "title": "Anomaly",
   "tags": [],
   "style": "dark",
@@ -366,8 +366,8 @@
     }
   ],
   "time": {
-    "from": "2017-01-26T09:10:22.204Z",
-    "to": "2017-01-26T09:17:05.016Z"
+    "from": "now-5m",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -924,15 +924,7 @@
   "schemaVersion": 12,
   "version": 9,
   "links": [
-    {
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [],
-      "type": "dashboards",
-      "asDropdown": true,
-      "title": "Dashboards"
-    }
+    
   ],
   "gnetId": null
 }

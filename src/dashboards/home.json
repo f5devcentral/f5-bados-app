@@ -1,6 +1,6 @@
 {
   "id": null,
-  "title": "Home",
+  "title": "Virtual Servers",
   "tags": [],
   "style": "dark",
   "timezone": "browser",
@@ -642,15 +642,7 @@
   "schemaVersion": 12,
   "version": 0,
   "links": [
-    {
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [],
-      "type": "dashboards",
-      "asDropdown": true,
-      "title": "Dashboards"
-    }
+   
   ],
   "gnetId": null
 }

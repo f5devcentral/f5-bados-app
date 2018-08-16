@@ -1,159 +1,247 @@
 {
-  "id": 2,
-  "title": "TCP",
-  "tags": [],
-  "style": "dark",
-  "timezone": "browser",
-  "editable": true,
-  "hideControls": false,
-  "sharedCrosshair": false,
-  "rows": [
+  "__inputs": [],
+  "__requires": [
     {
-      "collapse": false,
-      "editable": true,
-      "height": "650px",
-      "panels": [
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "$ds",
-          "editable": true,
-          "error": false,
-          "fill": 1,
-          "grid": {
-            "threshold1": null,
-            "threshold1Color": "rgba(216, 200, 27, 0.27)",
-            "threshold2": null,
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
-          },
-          "id": 1,
-          "isNew": true,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 2,
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "alias": "Open",
-              "query": "{\"vs\":\"$vs\",\"metric\":\"profile_tcp_stat.all\",\"columns\":[\"v2\"]}",
-              "refId": "A"
-            },
-            {
-              "alias": "Time-Wait",
-              "query": "{\"vs\":\"$vs\",\"metric\":\"profile_tcp_stat.all\",\"columns\":[\"v6\"]}",
-              "refId": "B"
-            },
-            {
-              "alias": "Close-Wait",
-              "query": "{\"vs\":\"$vs\",\"metric\":\"profile_tcp_stat.all\",\"columns\":[\"v3\"]}",
-              "refId": "C"
-            },
-            {
-              "alias": "Fin-Wait",
-              "query": "{\"vs\":\"$vs\",\"metric\":\"profile_tcp_stat.all\",\"columns\":[\"v4\"]}",
-              "refId": "D"
-            }
-          ],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Panel Title",
-          "tooltip": {
-            "msResolution": true,
-            "shared": true,
-            "sort": 0,
-            "value_type": "cumulative"
-          },
-          "type": "graph",
-          "xaxis": {
-            "show": true
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
-        },
-        {
-          "title": "Connection state",
-          "error": false,
-          "span": 6,
-          "editable": true,
-          "type": "grafana-piechart-panel",
-          "isNew": true,
-          "id": 2,
-          "targets": [
-            {
-              "refId": "A",
-              "query": "{\"vs\":\"$vs\",\"metric\":\"profile_tcp_stat.all\",\"columns\":[\"v6\"]}",
-              "alias": "TIME-WAIT"
-            },
-            {
-              "refId": "B",
-              "query": "{\"vs\":\"$vs\",\"metric\":\"profile_tcp_stat.all\",\"columns\":[\"v3\"]}",
-              "alias": "CLOSE-WAIT"
-            },
-            {
-              "refId": "C",
-              "query": "{\"vs\":\"$vs\",\"metric\":\"profile_tcp_stat.all\",\"columns\":[\"v4\"]}",
-              "alias": "FIN-WAIT"
-            },
-            {
-              "refId": "D",
-              "query": "{\"vs\":\"$vs\",\"metric\":\"profile_tcp_stat.all\",\"columns\":[\"v2\"]}",
-              "alias": "OPEN"
-            }
-          ],
-          "pieType": "pie",
-          "legend": {
-            "show": true,
-            "values": true
-          },
-          "links": [],
-          "datasource": "$ds",
-          "maxDataPoints": 3,
-          "interval": null,
-          "cacheTimeout": null,
-          "nullPointMode": "connected",
-          "legendType": "On graph",
-          "aliasColors": {},
-          "format": "short",
-          "valueName": "current",
-          "strokeWidth": 1,
-          "fontSize": "80%"
-        }
-      ],
-      "title": "Row"
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "5.2.1"
+    },
+    {
+      "type": "panel",
+      "id": "grafana-piechart-panel",
+      "name": "Pie Chart",
+      "version": "1.1.1"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": "5.0.0"
     }
   ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": null,
+  "iteration": 1533211498623,
+  "links": [
+ 
+  ],
+  "panels": [
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$ds",
+      "editable": true,
+      "error": false,
+      "fill": 1,
+      "grid": {},
+      "gridPos": {
+        "h": 17,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "isNew": true,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 2,
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "Open",
+          "query": "{\"vs\":\"$vs\",\"metric\":\"profile_tcp_stat.all\",\"columns\":[\"v2\"]}",
+          "refId": "A"
+        },
+        {
+          "alias": "Time-Wait",
+          "query": "{\"vs\":\"$vs\",\"metric\":\"profile_tcp_stat.all\",\"columns\":[\"v6\"]}",
+          "refId": "B"
+        },
+        {
+          "alias": "Close-Wait",
+          "query": "{\"vs\":\"$vs\",\"metric\":\"profile_tcp_stat.all\",\"columns\":[\"v3\"]}",
+          "refId": "C"
+        },
+        {
+          "alias": "Fin-Wait",
+          "query": "{\"vs\":\"$vs\",\"metric\":\"profile_tcp_stat.all\",\"columns\":[\"v4\"]}",
+          "refId": "D"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Panel Title",
+      "tooltip": {
+        "msResolution": true,
+        "shared": true,
+        "sort": 0,
+        "value_type": "cumulative"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": 0,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "cacheTimeout": null,
+      "datasource": "$ds",
+      "editable": true,
+      "error": false,
+      "fontSize": "80%",
+      "format": "short",
+      "gridPos": {
+        "h": 17,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 2,
+      "interval": null,
+      "isNew": true,
+      "legend": {
+        "show": true,
+        "values": true
+      },
+      "legendType": "On graph",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "alias": "TIME-WAIT",
+          "query": "{\"vs\":\"$vs\",\"metric\":\"profile_tcp_stat.all\",\"columns\":[\"v6\"]}",
+          "refId": "A"
+        },
+        {
+          "alias": "CLOSE-WAIT",
+          "query": "{\"vs\":\"$vs\",\"metric\":\"profile_tcp_stat.all\",\"columns\":[\"v3\"]}",
+          "refId": "B"
+        },
+        {
+          "alias": "FIN-WAIT",
+          "query": "{\"vs\":\"$vs\",\"metric\":\"profile_tcp_stat.all\",\"columns\":[\"v4\"]}",
+          "refId": "C"
+        },
+        {
+          "alias": "OPEN",
+          "query": "{\"vs\":\"$vs\",\"metric\":\"profile_tcp_stat.all\",\"columns\":[\"v2\"]}",
+          "refId": "D"
+        }
+      ],
+      "title": "Connection state",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 16,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "asd",
+          "value": "asd"
+        },
+        "datasource": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "BIG-IP",
+        "multi": false,
+        "name": "ds",
+        "options": [],
+        "query": "grafana-admdb-datasource",
+        "refresh": 1,
+        "regex": "",
+        "type": "datasource"
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "$ds",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "vs",
+        "options": [],
+        "query": "{\"list_vs\":1}",
+        "refresh": 1,
+        "regex": "\\/.*",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
   "time": {
     "from": "now-5m",
     "to": "now"
@@ -183,289 +271,8 @@
       "30d"
     ]
   },
-  "templating": {
-    "list": [
-      {
-        "current": {
-          "text": "BIGIP1",
-          "value": "BIGIP1"
-        },
-        "datasource": null,
-        "hide": 0,
-        "includeAll": false,
-        "label": "BIG-IP",
-        "multi": false,
-        "name": "ds",
-        "options": [
-          {
-            "text": "BIGIP1",
-            "value": "BIGIP1",
-            "selected": true
-          },
-          {
-            "text": "peter-qkview",
-            "value": "peter-qkview",
-            "selected": false
-          }
-        ],
-        "query": "grafana-admdb-datasource",
-        "refresh": 1,
-        "regex": "",
-        "type": "datasource"
-      },
-      {
-        "current": {
-          "text": "/Common/phpbb_10gb_lan+/Common/tcp",
-          "value": "/Common/phpbb_10gb_lan+/Common/tcp"
-        },
-        "datasource": "BIGIP1",
-        "hide": 0,
-        "includeAll": false,
-        "multi": false,
-        "name": "vs",
-        "options": [
-          {
-            "text": "/Common/phpbb_10gb_lan+/Common/bados",
-            "value": "/Common/phpbb_10gb_lan+/Common/bados",
-            "selected": false
-          },
-          {
-            "text": "/Common/phpbb_10gb_lan+/Common/tcp",
-            "value": "/Common/phpbb_10gb_lan+/Common/tcp",
-            "selected": true
-          },
-          {
-            "text": "/Common/phpbb_10gb_lan1+/Common/bados",
-            "value": "/Common/phpbb_10gb_lan1+/Common/bados",
-            "selected": false
-          },
-          {
-            "text": "/Common/phpbb_10gb_lan1+/Common/tcp",
-            "value": "/Common/phpbb_10gb_lan1+/Common/tcp",
-            "selected": false
-          },
-          {
-            "text": "_listener+/Common/f5-tcp-lan",
-            "value": "_listener+/Common/f5-tcp-lan",
-            "selected": false
-          },
-          {
-            "text": "_listener+/Common/f5-tcp-mobile",
-            "value": "_listener+/Common/f5-tcp-mobile",
-            "selected": false
-          },
-          {
-            "text": "_listener+/Common/f5-tcp-progressive",
-            "value": "_listener+/Common/f5-tcp-progressive",
-            "selected": false
-          },
-          {
-            "text": "_listener+/Common/f5-tcp-wan",
-            "value": "_listener+/Common/f5-tcp-wan",
-            "selected": false
-          },
-          {
-            "text": "_listener+/Common/mptcp-mobile-optimized",
-            "value": "_listener+/Common/mptcp-mobile-optimized",
-            "selected": false
-          },
-          {
-            "text": "_listener+/Common/splitsession-default-tcp",
-            "value": "_listener+/Common/splitsession-default-tcp",
-            "selected": false
-          },
-          {
-            "text": "_listener+/Common/tcp",
-            "value": "_listener+/Common/tcp",
-            "selected": false
-          },
-          {
-            "text": "_listener+/Common/tcp-lan-optimized",
-            "value": "_listener+/Common/tcp-lan-optimized",
-            "selected": false
-          },
-          {
-            "text": "_listener+/Common/tcp-legacy",
-            "value": "_listener+/Common/tcp-legacy",
-            "selected": false
-          },
-          {
-            "text": "_listener+/Common/tcp-mobile-optimized",
-            "value": "_listener+/Common/tcp-mobile-optimized",
-            "selected": false
-          },
-          {
-            "text": "_listener+/Common/tcp-wan-optimized",
-            "value": "_listener+/Common/tcp-wan-optimized",
-            "selected": false
-          },
-          {
-            "text": "_listener+/Common/wam-tcp-lan-optimized",
-            "value": "_listener+/Common/wam-tcp-lan-optimized",
-            "selected": false
-          },
-          {
-            "text": "_listener+/Common/wam-tcp-wan-optimized",
-            "value": "_listener+/Common/wam-tcp-wan-optimized",
-            "selected": false
-          },
-          {
-            "text": "_listener+/Common/wom-tcp-lan-optimized",
-            "value": "_listener+/Common/wom-tcp-lan-optimized",
-            "selected": false
-          },
-          {
-            "text": "_listener+/Common/wom-tcp-wan-optimized",
-            "value": "_listener+/Common/wom-tcp-wan-optimized",
-            "selected": false
-          },
-          {
-            "text": "_listener+_cgctcp_in",
-            "value": "_listener+_cgctcp_in",
-            "selected": false
-          },
-          {
-            "text": "_listener+_cgctcp_out",
-            "value": "_listener+_cgctcp_out",
-            "selected": false
-          },
-          {
-            "text": "_listener+_ecm_tcp",
-            "value": "_listener+_ecm_tcp",
-            "selected": false
-          },
-          {
-            "text": "_listener+_gtmtcp",
-            "value": "_listener+_gtmtcp",
-            "selected": false
-          },
-          {
-            "text": "_listener+_km_tcp",
-            "value": "_listener+_km_tcp",
-            "selected": false
-          },
-          {
-            "text": "_listener+_mcptcp",
-            "value": "_listener+_mcptcp",
-            "selected": false
-          },
-          {
-            "text": "_listener+_mntrtunnel_tcp",
-            "value": "_listener+_mntrtunnel_tcp",
-            "selected": false
-          },
-          {
-            "text": "_listener+_pingaccess_tcp",
-            "value": "_listener+_pingaccess_tcp",
-            "selected": false
-          },
-          {
-            "text": "_listener+_tcp4_ha_defaults",
-            "value": "_listener+_tcp4_ha_defaults",
-            "selected": false
-          },
-          {
-            "text": "_listener+_tmm_antserver_tcp",
-            "value": "_listener+_tmm_antserver_tcp",
-            "selected": false
-          },
-          {
-            "text": "_listener+_tmm_apm_portal_tcp",
-            "value": "_listener+_tmm_apm_portal_tcp",
-            "selected": false
-          },
-          {
-            "text": "_listener+_tmm_firepass_memcached_internal_tcp",
-            "value": "_listener+_tmm_firepass_memcached_internal_tcp",
-            "selected": false
-          },
-          {
-            "text": "_listener+_woctunnel_tcp",
-            "value": "_listener+_woctunnel_tcp",
-            "selected": false
-          },
-          {
-            "text": "_listener+mpitcp",
-            "value": "_listener+mpitcp",
-            "selected": false
-          },
-          {
-            "text": "_listener+rcptcp",
-            "value": "_listener+rcptcp",
-            "selected": false
-          },
-          {
-            "text": "_listener+swgtcp",
-            "value": "_listener+swgtcp",
-            "selected": false
-          },
-          {
-            "text": "_listener+tcp",
-            "value": "_listener+tcp",
-            "selected": false
-          },
-          {
-            "text": "_listener+waptcp",
-            "value": "_listener+waptcp",
-            "selected": false
-          },
-          {
-            "text": "_tmm_apm_fwd_vip_http+/Common/apm-forwarding-client-tcp",
-            "value": "_tmm_apm_fwd_vip_http+/Common/apm-forwarding-client-tcp",
-            "selected": false
-          },
-          {
-            "text": "_tmm_apm_fwd_vip_http+/Common/apm-forwarding-server-tcp",
-            "value": "_tmm_apm_fwd_vip_http+/Common/apm-forwarding-server-tcp",
-            "selected": false
-          },
-          {
-            "text": "_tmm_apm_fwd_vip_http_ipv6+/Common/apm-forwarding-client-tcp",
-            "value": "_tmm_apm_fwd_vip_http_ipv6+/Common/apm-forwarding-client-tcp",
-            "selected": false
-          },
-          {
-            "text": "_tmm_apm_fwd_vip_http_ipv6+/Common/apm-forwarding-server-tcp",
-            "value": "_tmm_apm_fwd_vip_http_ipv6+/Common/apm-forwarding-server-tcp",
-            "selected": false
-          },
-          {
-            "text": "_tmm_apm_oauth_as_admin_vip+_tmm_apm_oauth_tcp",
-            "value": "_tmm_apm_oauth_as_admin_vip+_tmm_apm_oauth_tcp",
-            "selected": false
-          },
-          {
-            "text": "_tmm_apm_portal_cache_vip+_tmm_apm_portal_tcp",
-            "value": "_tmm_apm_portal_cache_vip+_tmm_apm_portal_tcp",
-            "selected": false
-          },
-          {
-            "text": "all",
-            "value": "all",
-            "selected": false
-          }
-        ],
-        "query": "{\"list_vs\":1}",
-        "refresh": 1,
-        "regex": "\\/.*",
-        "type": "query"
-      }
-    ]
-  },
-  "annotations": {
-    "list": []
-  },
-  "refresh": "5s",
-  "schemaVersion": 12,
-  "version": 7,
-  "links": [
-    {
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [],
-      "type": "dashboards"
-    }
-  ],
-  "gnetId": null
+  "timezone": "browser",
+  "title": "TCP",
+  "uid": null,
+  "version": 2
 }
