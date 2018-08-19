@@ -11,7 +11,8 @@ grafana-cli --pluginUrl https://github.com/akruman/grafana-datatable-panel/archi
 
 ```
 3. Restart your Grafana server.
-4. Configure data source per each BIG-IP
+4. Enable the just installed F5 bigip application
+5. Configure data source per each BIG-IP
     - type: F5 Networks BIG-IP datasource
     - name: name your datasource
     - url: https://<ip>/ to your BIG-IP managment
