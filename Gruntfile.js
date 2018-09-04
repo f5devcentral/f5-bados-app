@@ -35,8 +35,14 @@ module.exports = function(grunt) {
         expand: true,
         src: ['README.md'],
         dest: 'dist',
+      },
+      install: {
+        src: ['**/*','!node_modules/**'],
+        dest: 'C:\\Users\\kruman\\Desktop\\grafana-5.2.2\\data\\plugins\\f5-bados-app\\'
       }
     },
+
+    
 
     watch: {
       rebuild_all: {
@@ -63,6 +69,16 @@ module.exports = function(grunt) {
       },
     }
   });
+
+  grunt.registerTask('install', [
+    'clean',
+    'copy:src_to_dist',
+    'copy:datasource',
+    'copy:panels',
+    'copy:pluginDef',
+    'babel',
+    'copy:install'
+    ]);
 
   grunt.registerTask('default', [
     'clean',
