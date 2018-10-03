@@ -11,6 +11,8 @@ ADMdb plugin for grafana 4.2.0
 + cutting unused graph values
 + fix single stat using far away values
 + fixing handling of missing values in table queries (some vs have missing data)
++ on datasource configuration detects datasource api type.
+    can work in (admin, admin+rest, guest+rest), v2 database. 
 
 + support grafana heatmap plugin in "Axes:Data Format:Time Series Buckets" mode, by using query with "bHeatMap":1 option.
 
