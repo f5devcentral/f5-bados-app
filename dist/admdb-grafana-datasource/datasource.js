@@ -834,7 +834,7 @@ print `+func_name+`(`+args.map(function(arg){return JSON.stringify(arg)}).join()
   AdmDbDatasource.prototype.list_remote_dir = function(abs_path) {
     var o = {
         method: 'POST',
-        url:    this.url + '/mgmt/tm/util/admdb',
+        url:    this.url,
         params: '',
         data: {"command":"run","utilCmdArgs": null},
         headers : {'content-type': 'application/json'},
