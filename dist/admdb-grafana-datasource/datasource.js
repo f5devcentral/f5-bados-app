@@ -27,6 +27,10 @@ function (angular, _, dateMath, AdmQueryBuilder, geohash, countries, states, ta)
     this.Countries = countries(); // function to query for country names, and get {lat,lon}
 
     this.cache = {}; // map that caches files for x secs
+    this.admdb_interface = { 
+      permissions:'guest'/*guest|admin|guest,admin*/, 
+      db_version:'v2'/*v2|v1*/
+    };
   }
 
   AdmDbDatasource.prototype.ptPerFile = 4096; // points per file
@@ -377,54 +381,103 @@ function (angular, _, dateMath, AdmQueryBuilder, geohash, countries, states, ta)
 */
   AdmDbDatasource.prototype.testDatasource = function() {
     var _this = this; // cause this is lost inside the following
-    var options = {
-        method: 'POST',
-        url:    this.url + '/mgmt/tm/util/admdb',
-        params: '',
-        data: {"command":"run","utilCmdArgs": 'list-element "'+_this.base_path+'/"'},
-        headers : {'content-type': 'application/json'}
-      };
 
-    return this.backendSrv.datasourceRequest(options).then(
-      function(res){
-        if(res.data.commandResult){
-          var x = res.data.commandResult;
-          var database_names = x.slice(0,-1).split(',').map(function(s){return s.trim();});
-          if(database_names.indexOf(_this.database) !== -1) {
-            return _this.q.when({ status: "success", message: "DataBase found in DataSource", title: "Success" });
-          } else {
-            return _this.q.when({ status: "error", message: "DataBase not found in DataSource, turn on metric collection in bigip", title: "Error" });
-          }
-        } else {
-          return _this.q.when({ status: "error", message: "DataSource not responding, check your BasicAuth credentials", title: "Error" });
+    var options1 = {
+      method: 'POST',
+      url:    this.url + '/mgmt/tm/util/admdb',
+      params: '',
+      data: {"command":"run","utilCmdArgs": 'list-element "'+_this.base_path+'/'+_this.database+'/"'},
+      headers : {'content-type': 'application/json'}
+    };
+
+    var options2 = {
+      method: 'POST',
+      url:    this.url + '/mgmt/tm/util/bash',
+      params: '',
+      data: {"command":"run","utilCmdArgs": '-c "ls -m '+_this.base_path+'/'+_this.database+'/"'},
+      headers : {'content-type': 'application/json'}
+    };
+
+    /* when working make sure to check both fields to correctly work with api */
+    this.admdb_interface = { 
+      permissions:''/*guest|admin|guest,admin*/, 
+      db_version:''/*v2|v1*/
+    };
+
+    return this.allSettled([
+      this.backendSrv.datasourceRequest(options1).then(
+        function(res){
+          if(res.data.commandResult.startsWith("can't run")){throw 1;}
+          _this.admdb_interface.permissions += ',guest'
+          return res.data.commandResult;
+        }, 
+        function(res){
+          _this.admdb_interface.permissions.replace(',guest','')
+          throw 1;
         }
-      },
-      function(res) { // error callback
-        return _this.q.when({ status: "error", message: "DataSource not responding, check your BasicAuth credentials", title: "Error" });        
+      ),
+      this.backendSrv.datasourceRequest(options2).then(
+        function(res){
+          if(res.data.commandResult.startsWith("can't run")){throw 1;}
+          _this.admdb_interface.permissions += ',admin'
+          return res.data.commandResult;
+        }, 
+        function(res){
+          _this.admdb_interface.permissions.replace(',admin','')
+          throw 1;
+        }
+      )
+    ]).then(function(promises){
+      // find the first not rejected
+      for(let i=0;i<promises.length;i++) {
+        if(promises[i].state == "fullfilled" && "value" in promises[i]){
+          let cmd_res = promises[i].value;
+          if(cmd_res.startsWith('ls: ')) {
+            return _this.q.when({ status: "error", message: "DataBase not found in DataSource", title: "Error" });
+          } else {
+            let db_contents = cmd_res.slice(0,-1).split(',');
+            if(db_contents.indexOf('vs')!=-1){
+              _this.admdb_interface.db_version='v2';
+            } else if(db_contents.length > 0 && db_contents[0].length%2==0) {
+              _this.admdb_interface.db_version='v1'; /** TBD: improve this validation once i merge the v1 code here */
+            }
+            return _this.q.when({ status: "success", message: "DataBase found in DataSource", title: "Success" });
+          }     
+        }
       }
-    );
+      return _this.q.when({ status: "error", message: "DataSource not responding", title: "Error" });
+    })
   };
 
   AdmDbDatasource.prototype.list_metrics = function(vs_folder, vs) {
-    var o = {
-      method: 'POST',
-      url: _this.url + '/mgmt/tm/util/admdb',
-      params: '',
-      data: { "command": "run", "utilCmdArgs": 'list-metrics "' + vs_folder + '" "' + vs + '"'},
-      headers: { 'content-type': 'application/json' },
-      inspect: { type: 'admdb' },
-      precision: "ms"
-    };
-    return _this.backendSrv.datasourceRequest(o).then(
-      function(result){
-        //console.log(result);
-        if (result.data.commandResult) {
-          var data = result.data.commandResult;
-          console.log(['data',data])
-          return _this.q.when(JSON.parse(data))
+    let _this = this;
+    if(this.admdb_interface.permissions.indexOf('guest') >= 0 && this.admdb_interface.db_version == 'v2'){
+      var o = {
+        method: 'POST',
+        url: _this.url + '/mgmt/tm/util/admdb',
+        params: '',
+        data: { "command": "run", "utilCmdArgs": 'list-metrics "' + vs_folder + '" "' + vs + '"'},
+        headers: { 'content-type': 'application/json' },
+        inspect: { type: 'admdb' },
+        precision: "ms"
+      };
+      return _this.backendSrv.datasourceRequest(o).then(
+        function(result){
+          //console.log(result);
+          if (result.data.commandResult) {
+            var data = result.data.commandResult;
+            console.log(['data',data])
+            return _this.q.when(JSON.parse(data))
+          }
         }
-      }
-    )
+      )
+    } else if(this.admdb_interface.permissions.indexOf('admin') >= 0 && this.admdb_interface.db_version == 'v2'){
+      return this.run_python_code(
+        _this.list_metrics_py, 
+        'list_metrics', vs_folder, vs)
+    } else {
+      return _this.q.when([])
+    }
   }
 
   /* will work only for admin bigip user 
@@ -433,6 +486,9 @@ function (angular, _, dateMath, AdmQueryBuilder, geohash, countries, states, ta)
   and supply the arguments 
   make sure to return json.dumps() from python */ 
   AdmDbDatasource.prototype.run_python_code = function(pcode, func_name, ...args) {
+    if(this.admdb_interface.permissions.indexOf('admin') == -1){
+      throw new Error("need admin permission")  // safety
+    }
     var _this = this
     console.log([pcode, func_name, args])
     var str_b64 = (`undefined = None
@@ -742,12 +798,22 @@ print `+func_name+`(`+args.map(function(arg){return JSON.stringify(arg)}).join()
     }
     var o = {
         method: 'POST',
-        url:    this.url + '/mgmt/tm/util/admdb',
+        url:    this.url,
         params: '',
-        data: {"command":"run","utilCmdArgs": 'view-element "' + abs_path + '"'},
+        data: {"command":"run","utilCmdArgs": null},
         headers : {'content-type': 'application/json'},
         inspect: {type: this.type} // need this ?
     };
+    if(this.admdb_interface.permissions.indexOf('guest') >= 0){
+      o.url += '/mgmt/tm/util/admdb';
+      o.data.utilCmdArgs = 'view-element "' + abs_path + '"';
+    } else if(this.admdb_interface.permissions.indexOf('admin') >= 0) {
+      o.url += '/mgmt/tm/util/bash';
+      o.data.utilCmdArgs = '-c "cat '+abs_path+'"';
+    } else {
+      throw new Error("no permissions")
+    }
+
     console.log(["cat_remote_file", abs_path, cmd]);
     return this.backendSrv.datasourceRequest(o)
     .then(function(res) {
@@ -770,10 +836,19 @@ print `+func_name+`(`+args.map(function(arg){return JSON.stringify(arg)}).join()
         method: 'POST',
         url:    this.url + '/mgmt/tm/util/admdb',
         params: '',
-        data: {"command":"run","utilCmdArgs": 'list-element "'+abs_path+'"'},
+        data: {"command":"run","utilCmdArgs": null},
         headers : {'content-type': 'application/json'},
         inspect: {type: this.type} // need this ?
       };
+      if(this.admdb_interface.permissions.indexOf('guest') >= 0){
+        o.url += '/mgmt/tm/util/admdb';
+        o.data.utilCmdArgs = 'list-element "'+abs_path+'"';
+      } else if(this.admdb_interface.permissions.indexOf('admin') >= 0){
+        o.url += '/mgmt/tm/util/bash';
+        o.data.utilCmdArgs = '-c "ls -m '+abs_path+'"';
+      } else {
+        throw new Error("no permissions") 
+      }
 
       console.log(["list_remote_dir", abs_path]);
       return this.backendSrv.datasourceRequest(o)
@@ -789,7 +864,49 @@ print `+func_name+`(`+args.map(function(arg){return JSON.stringify(arg)}).join()
           });
       })
   };
+/*
+  @param path - into the vs folder where all vs's are present
+  @param vs - name of the vs to search for metrics ('all' ignored), 
+    if not specified then first found vs is chosen
+  @return - json list of strings, each string is topic.metric,
+    for all topics ands metrics found within the 1000 and default precision in the 
+    2 most recent train files.
+ */
+  AdmDbDatasource.prototype.list_metrics_py = `
+import json, os, glob, re
+# note the double \\, they are eaten by js to a single one, that python needs to escape
+pattern = re.compile('\\["([^,\\"]*)\\",')
+def list_metrics(path, vs=None):
+    if vs is None or vs == 'all':
+      # get the first vs!='all'
+      try:
+          vs = (x for x in (x.split('/')[-1] for x in glob.iglob(path+'/*')) if x !='all').next()
+      except: # no vs found
+          return json.dumps([]) 
 
+    topics = glob.glob(path+'/'+vs+'/*')
+    fnames = []
+    for topic_fullp in topics:
+        p1000 = glob.glob(topic_fullp+'/1000/*.txt')
+        pdefault = glob.glob(topic_fullp+'/default/*.txt')
+        p1000.sort()
+        pdefault.sort()
+        fnames+=p1000[-2:]
+        fnames+=pdefault[-2:]
+    # open fnames, read all unique metrics
+    metrics = set() 
+    for file in fnames:
+        topic = file.split('/')[-3]
+        for line in open(file,'r'):
+            try:
+                metric = pattern.match(line).group(1)
+                metrics.add(topic+'.'+metric)
+            except: pass
+
+    # tbd: escape topic as a file, and metric as json encoded
+    return json.dumps(list(metrics))
+
+`
   /* support metric queries:
      {"list_vs":1}  - list virtual servers in current db
      {"list_topic":1, vs:"$vs"} - lists topics under selected vs
