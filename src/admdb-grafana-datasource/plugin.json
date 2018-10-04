@@ -1,5 +1,5 @@
 {
-  "id": "grafana-admdb-datasource",
+  "id": "grafana-admdb-datasource-evergreen",
   "type": "datasource",
   "name": "F5 Networks BIG-IP datasource",
 
@@ -20,8 +20,8 @@
       "small": "img/admdb_logo_large.png",
       "large": "img/admdb_logo_large.png"
     },
-    "version": "1.2.5.app.evergreen",
-    "updated": "2018-08-18"
+    "version": "1.3.0.app.evergreen",
+    "updated": "2018-10-04"
   },
 
   "dependencies": {

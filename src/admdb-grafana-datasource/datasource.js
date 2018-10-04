@@ -16,7 +16,7 @@ function (angular, _, dateMath, AdmQueryBuilder, geohash, countries, states) {
   function AdmDbDatasource(instanceSettings, $q, backendSrv, templateSrv) {
     console.log(instanceSettings);
     console.log(arguments);
-    this.type = 'grafana-admdb-datasource';
+    this.type = 'grafana-admdb-datasource-evergreen';
     this.url = instanceSettings.url;
     this.database = instanceSettings.jsonData.database
     this.name = instanceSettings.name;
@@ -27,6 +27,11 @@ function (angular, _, dateMath, AdmQueryBuilder, geohash, countries, states) {
     this.templateSrv = templateSrv;
     this.States = states(); // function to query for state names, and get {lat,lon}
     this.Countries = countries(); // function to query for country names, and get {lat,lon}
+
+    this.admdb_interface = { 
+      permissions:'guest'/*guest|admin|guest,admin*/, 
+      db_version:'v1'/*v2|v1*/
+    };
 
     self = this;
   }
@@ -64,6 +69,106 @@ function (angular, _, dateMath, AdmQueryBuilder, geohash, countries, states) {
           return String.fromCharCode(parseInt(ss, 16));
       }).join("");
   } 
+
+    /* returns python code to be injected using rest-api
+      example:
+      base_path = '/shared/admdb',
+      db = 'default'
+      sRate = 1000
+      tsfiles = ['1471354880000']  // can be more files
+      ts = [1471355030000,1471355030000],
+      metric_columns_aliases = [['sig.tps','*','']] // array of metric,columns, and aliases; [['sig.tps','*','TPS'],['sig.health',['v0','v1'],'HEALTH']]
+    */
+    AdmDbDatasource.prototype.table_query = function(base_path, db, sRate, tsfiles, ts, metric_columns_aliases) {
+      var pcode = `
+import os,json
+
+def chch2a(chch):
+    # convert 2 chars encode, to ascii char
+    if chch[0]=='_':
+        return chch[1]
+    else:
+        return chr(int(chch,16))
+
+def fixedDecodeURIComponent(vs):
+    # demangles encoded vs name
+    return "".join([chch2a(vs[i:i+2]) for i in range(0, len(vs), 2)])
+    
+    
+def vs_table_query(base_path='/shared/admdb',db='default'):
+    # return list of virtual servers (not demangled) in db (except for 'all' component)
+    return [x for x in os.listdir(os.path.join(base_path,db)) if x!='_a_l_l']
+
+def cell_table_query(base_path,db,vs_raw,metric,sRate,columns,tsfiles,ts):
+    #ts=(from,to)
+    # returns {columns:[cola,colb],rows:[[a,b]]}
+    for tsfile in reversed(tsfiles): # from last file
+        try:
+            with open(os.path.join(base_path,db,vs_raw,metric,str(sRate),str(tsfile)+'.txt'),'r') as f:
+                try:
+                    j=json.loads(f.read()+']}')
+                    
+                    cols = j['properties']['columns']
+                    d=dict(zip(cols,range(len(cols))))
+                    tcol=d['time']
+                    if columns!="*":
+                        #columns = json.loads(columns)
+                        d=dict([(k,d[k]) for k in columns if k in d]) #col:idx
+                    for v in reversed(j['values']):
+                        if v[tcol]<=ts[1] and v[tcol]>=ts[0]:
+                            return {'columns':d.keys(),'rows':[[v[i] for i in d.values()]]}
+                except:
+                    pass
+        except:pass
+    return {'columns':[], 'rows':[]}
+
+def log(*args,**kargs):
+    from datetime import datetime
+    f = open('/var/run/adm/pylogs/1.txt','a')
+    print >> f, datetime.now(), args, kargs
+    f.close()
+
+def dk(d,k): # return d[k] if k a valid key
+    if d is not None and k in d:
+        return d[k]
+    return None
+
+def table_query(base_path,db,sRate,tsfiles,ts,metric_columns_aliases):
+
+    vs_raw_list = vs_table_query(base_path,db)
+    vs_clean_list = [fixedDecodeURIComponent(x) for x in vs_raw_list]
+
+    ret = { "columns": [{"text":"vs"}], "rows":[[vs] for vs in vs_clean_list], "type":"table" } # 
+
+    for mca in metric_columns_aliases:
+        column = {} # for 1 metric
+        for vs,vs_raw in zip(vs_clean_list,vs_raw_list):
+            r=cell_table_query(base_path,db,vs_raw,mca[0],sRate,mca[1],tsfiles,ts) # {columns:[cola,colb],rows:[[a,b]]}
+            if len(r['rows']):
+                column[vs]=dict(zip(r['columns'],r['rows'][0]))
+        
+        if len(column)==0:
+            continue;
+        col_names = list(set.union(*[set(d.keys()) for d in column.values()]))
+
+        metric_name, b_add_col_name = mca[0], True
+        if len(mca)>=3 and mca[2]!='':
+            metric_name = mca[2]
+            if len(col_names)<=1:
+                b_add_col_name = False # alias, 1 column, then alias replaces the whole col name
+
+        ret['columns']+=[{"text":metric_name+['', '.'+c][b_add_col_name]} for c in col_names]
+
+        for ixrow, row in enumerate(ret["rows"]):
+            ret["rows"][ixrow] += [dk(dk(column,row[0]),c) for c in col_names]
+   
+    return json.dumps(ret)
+
+    `
+    return pcode + 
+`
+print table_query('`+base_path+`','`+db+`',`+sRate+`,`+JSON.stringify(tsfiles)+`,`+JSON.stringify(ts)+`,`+JSON.stringify(metric_columns_aliases)+`)`;
+    } 
 
   /* returns a function with cached results 
     @param fn - the function to wrap
@@ -146,7 +251,7 @@ function (angular, _, dateMath, AdmQueryBuilder, geohash, countries, states) {
 
     //console.log(["query range,files",from, to, file_names])
 
-    var this_url = this.url, this_database = options.database || this.database;
+    var this_database = options.database || this.database;
     var _this = this;
 
     // check for table query, one of the queries should contain the table key, then the whole batch is treated as table query
@@ -160,17 +265,27 @@ function (angular, _, dateMath, AdmQueryBuilder, geohash, countries, states) {
       // extract metric : columns from each query, substitite them with template vars, and then call the below xuina 
       //console.log(metric_columns_aliases);
 
-      var str_cmd = [_this.base_path, this_database, sRate, JSON.stringify(file_names), JSON.stringify([from,to]), JSON.stringify(metric_columns_aliases)].map(x=>"'"+x+"'").join(" ")
-
       var o = {
         method: 'POST',
-        url: self.url + '/mgmt/tm/util/admdb',
+        url: _this.url,
         params: '',
-        data: { "command": "run", "utilCmdArgs": 'table-query '+str_cmd},
+        data: { "command": "run", "utilCmdArgs": null},
         headers: { 'content-type': 'application/json' },
         inspect: { type: 'admdb' },
         precision: "ms"
       };
+
+      if(_this.admdb_interface.permissions.indexOf('guest') >= 0 && _this.admdb_interface.db_version == 'v1'){
+        o.url += '/mgmt/tm/util/admdb';
+        let str_cmd = [_this.base_path, this_database, sRate, JSON.stringify(file_names), JSON.stringify([from,to]), JSON.stringify(metric_columns_aliases)].map(x=>"'"+x+"'").join(" ")
+        o.data.utilCmdArgs = 'table-query '+str_cmd;
+      } else if(_this.admdb_interface.permissions.indexOf('admin') >= 0 && _this.admdb_interface.db_version == 'v1'){
+        o.url += '/mgmt/tm/util/bash';
+        let str_b64 = btoa(_this.table_query(_this.base_path, this_database, sRate, file_names, [from,to], metric_columns_aliases)) //  [['sig.tps','["v0","time"]']]))
+        o.data.utilCmdArgs = '-c "echo ' + str_b64 + `|python -c 'import base64; exec(base64.b64decode(raw_input()))' "`;
+      } else {
+        return self.q.when({ data:[]})
+      }
       //console.log(o);
       return _this.datasourceRequest1(o).then(
         function(result){
@@ -204,13 +319,24 @@ function (angular, _, dateMath, AdmQueryBuilder, geohash, countries, states) {
         _.forEach(file_names, function (file_name) {
           var o = {
             method: 'POST',
-            url: self.url + '/mgmt/tm/util/admdb',
+            url: _this.url,
             params: '',
-            data: { "command": "run", "utilCmdArgs": 'view-element "' + [_this.base_path, this_database, query.vs, query.metric, sRate, file_name + '.txt'].join('/') + '"' },
+            data: { "command": "run", "utilCmdArgs": '' + [_this.base_path, this_database, query.vs, query.metric, sRate, file_name + '.txt'].join('/') + '"' },
             headers: { 'content-type': 'application/json' },
             inspect: { type: 'admdb' },
             precision: "ms"
           };
+
+          if(_this.admdb_interface.permissions.indexOf('guest') >= 0 && _this.admdb_interface.db_version == 'v1'){
+            o.url += '/mgmt/tm/util/admdb';
+            o.data.utilCmdArgs = 'view-element "' + o.data.utilCmdArgs;
+          } else if(_this.admdb_interface.permissions.indexOf('admin') >= 0 && _this.admdb_interface.db_version == 'v1'){
+            o.url += '/mgmt/tm/util/bash';
+            o.data.utilCmdArgs = '-c "cat ' + o.data.utilCmdArgs;
+          } else {
+            http_reqs.push(self.q.when({ series_id: series_id, data: {} }))
+            return; // skip preparing an actual request to backend
+          }
 
           console.log(["query.url", o.url, o.data.utilCmdArgs]);
           http_reqs.push(_this.datasourceRequest1(o).then(
@@ -425,7 +551,18 @@ function (angular, _, dateMath, AdmQueryBuilder, geohash, countries, states) {
       return self.q.when(ret);
     });
   };
-
+/**
+ * validates that the name is properly escaped as expected from vs folder
+ * @param {string} s 
+ */
+  AdmDbDatasource.prototype.validateUriComponentEncoding = function(s) {
+    return _.isString(s) && s.length%2==0 && 
+      s.indexOf("\n") == -1 && s.indexOf("\r") == -1 &&
+      _.filter(s.match(/.{2}/g),
+        (vv)=>{
+          return !((vv[0]=='_' && /[0-9a-zA-Z\-_.]/.test(vv[1])) || /[0-9a-f]{2}/.test(vv))
+        }).length==0;
+  };
 /*
   performs a test connection to the bigip through the rest api.
   from configuration:
@@ -435,35 +572,75 @@ function (angular, _, dateMath, AdmQueryBuilder, geohash, countries, states) {
     4. specify database name - it should be 'default' if you havent crafted something else
   lists the databases in the bigip and if your present returns success
 */
-  AdmDbDatasource.prototype.testDatasource = function() {
-    var _this = this; // cause this is lost inside the following
-    var options = {
-        method: 'POST',
-        url:    this.url + '/mgmt/tm/util/admdb',
-        params: '',
-        data: {"command":"run","utilCmdArgs": 'list-element "'+_this.base_path+'/"'},
-        headers : {'content-type': 'application/json'}
-      };
+AdmDbDatasource.prototype.testDatasource = function() {
+  var _this = this; // cause this is lost inside the following
 
-    return this.backendSrv.datasourceRequest(options).then(
-      function(res){
-        if(res.data.commandResult){
-          var x = res.data.commandResult;
-          var database_names = x.slice(0,-1).split(',').map(function(s){return s.trim();});
-          if(database_names.indexOf(_this.database) !== -1) {
-            return _this.q.when({ status: "success", message: "DataBase found in DataSource", title: "Success" });
-          } else {
-            return _this.q.when({ status: "error", message: "DataBase not found in DataSource, turn on metric collection in bigip", title: "Error" });
-          }
-        } else {
-          return _this.q.when({ status: "error", message: "DataSource not responding, check your BasicAuth credentials", title: "Error" });
-        }
-      },
-      function(res) { // error callback
-        return _this.q.when({ status: "error", message: "DataSource not responding, check your BasicAuth credentials", title: "Error" });        
-      }
-    );
+  var options1 = {
+    method: 'POST',
+    url:    this.url + '/mgmt/tm/util/admdb',
+    params: '',
+    data: {"command":"run","utilCmdArgs": 'list-element "'+_this.base_path+'/'+_this.database+'/"'},
+    headers : {'content-type': 'application/json'}
   };
+
+  var options2 = {
+    method: 'POST',
+    url:    this.url + '/mgmt/tm/util/bash',
+    params: '',
+    data: {"command":"run","utilCmdArgs": '-c "ls -m '+_this.base_path+'/'+_this.database+'/"'},
+    headers : {'content-type': 'application/json'}
+  };
+
+  /* when working make sure to check both fields to correctly work with api */
+  this.admdb_interface = { 
+    permissions:''/*guest|admin|guest,admin*/, 
+    db_version:''/*v2|v1*/
+  };
+
+  return this.allSettled([
+    this.backendSrv.datasourceRequest(options1).then(
+      function(res){
+        if(res.data.commandResult.startsWith("can't run")){throw 1;}
+        _this.admdb_interface.permissions += ',guest'
+        return res.data.commandResult;
+      }, 
+      function(res){
+        _this.admdb_interface.permissions.replace(',guest','')
+        throw 1;
+      }
+    ),
+    this.backendSrv.datasourceRequest(options2).then(
+      function(res){
+        if(res.data.commandResult.startsWith("can't run")){throw 1;}
+        _this.admdb_interface.permissions += ',admin'
+        return res.data.commandResult;
+      }, 
+      function(res){
+        _this.admdb_interface.permissions.replace(',admin','')
+        throw 1;
+      }
+    )
+  ]).then(function(promises){
+    // find the first not rejected
+    for(let i=0;i<promises.length;i++) {
+      if(promises[i].state == "fullfilled" && "value" in promises[i]){
+        let cmd_res = promises[i].value;
+        if(cmd_res.startsWith('ls: ')) {
+          return _this.q.when({ status: "error", message: "DataBase not found in DataSource", title: "Error" });
+        } else {
+          let db_contents = cmd_res.slice(0,-1).split(',');
+          if(db_contents.indexOf('vs')!=-1){
+            _this.admdb_interface.db_version='v2';
+          } else if(db_contents.length > 0 && _this.validateUriComponentEncoding(db_contents[0])) {
+            _this.admdb_interface.db_version='v1';
+          }
+          return _this.q.when({ status: "success", message: "DataBase found in DataSource", title: "Success" });
+        }     
+      }
+    }
+    return _this.q.when({ status: "error", message: "DataSource not responding", title: "Error" });
+  })
+};
 
   /* support metric queries:
      {"list_vs":1}  - list virtual servers in current db 
@@ -481,12 +658,22 @@ function (angular, _, dateMath, AdmQueryBuilder, geohash, countries, states) {
 
       var o = {
         method: 'POST',
-        url:    this.url + '/mgmt/tm/util/admdb',
+        url:    this.url,
         params: '',
-        data: {"command":"run","utilCmdArgs": 'list-element "'+_this.base_path+'/'+this_database+'"'}, 
+        data: {"command":"run","utilCmdArgs": ''+_this.base_path+'/'+this_database+'"'}, 
         headers : {'content-type': 'application/json'},
         inspect: {type: this.type}
       };
+
+      if(_this.admdb_interface.permissions.indexOf('guest') >= 0 && _this.admdb_interface.db_version == 'v1'){
+        o.url += '/mgmt/tm/util/admdb';
+        o.data.utilCmdArgs = 'list-element "' + o.data.utilCmdArgs;
+      } else if(_this.admdb_interface.permissions.indexOf('admin') >= 0 && _this.admdb_interface.db_version == 'v1'){
+        o.url += '/mgmt/tm/util/bash';
+        o.data.utilCmdArgs = '-c "ls -m ' + o.data.utilCmdArgs;
+      } else {
+        return self.q.when([]);
+      }
 
       
 
