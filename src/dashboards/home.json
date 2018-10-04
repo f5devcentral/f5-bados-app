@@ -619,7 +619,7 @@
             "selected": false
           }
         ],
-        "query": "grafana-admdb-datasource",
+        "query": "grafana-admdb-datasource-evergreen",
         "refresh": 1,
         "regex": "",
         "type": "datasource"

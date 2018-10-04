@@ -160,7 +160,7 @@
         "label": "BIG-IP",
         "name": "ds",
         "options": [],
-        "query": "grafana-admdb-datasource",
+        "query": "grafana-admdb-datasource-evergreen",
         "refresh": 1,
         "regex": "",
         "type": "datasource"
