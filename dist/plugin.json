@@ -14,8 +14,8 @@
         "small": "img/admdb_logo_large.png",
         "large": "img/admdb_logo_large.png"
       },
-      "version": "0.0.1.evergreen",
-      "updated": "2018-08-16"
+      "version": "0.0.2.evergreen",
+      "updated": "2018-10-04"
     },
     "includes": [
       {
