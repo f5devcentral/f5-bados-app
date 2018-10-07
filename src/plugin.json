@@ -14,7 +14,7 @@
         "small": "img/admdb_logo_large.png",
         "large": "img/admdb_logo_large.png"
       },
-      "version": "0.0.3.evergreen",
+      "version": "0.0.4.evergreen",
       "updated": "2018-10-07"
     },
     "includes": [
@@ -22,17 +22,17 @@
         "type": "datasource",
         "name": "F5 Networks BIG-IP datasource evergreen"
       },
-      {"type": "dashboard",  "name": "Virtual Servers",       "path": "dashboards/home.json", "addToNav": true, "defaultNav": true},
-      {"type": "dashboard",  "name": "Health and Mitigations","path": "dashboards/health.json", "addToNav": true},
+      {"type": "dashboard",  "name": "Virtual Servers evergreen",       "path": "dashboards/home.json", "addToNav": true, "defaultNav": true},
+      {"type": "dashboard",  "name": "Health and Mitigations evergreen","path": "dashboards/health.json", "addToNav": true},
 
-      {"type": "dashboard",  "name": "Signatures",            "path": "dashboards/signatures.json", "addToNav": true},
-      {"type": "dashboard",  "name": "Anomaly",               "path": "dashboards/anomaly.json", "addToNav": true},
-      {"type": "dashboard",  "name": "Signatures Topology",   "path": "dashboards/signatures_topology.json", "addToNav": true},
+      {"type": "dashboard",  "name": "Signatures evergreen",            "path": "dashboards/signatures.json", "addToNav": true},
+      {"type": "dashboard",  "name": "Anomaly evergreen",               "path": "dashboards/anomaly.json", "addToNav": true},
+      {"type": "dashboard",  "name": "Signatures Topology evergreen",   "path": "dashboards/signatures_topology.json", "addToNav": true},
 
-      {"type": "dashboard",  "name": "Events",                "path": "dashboards/events.json", "addToNav": true},
-      {"type": "dashboard",  "name": "Attackers Map",         "path": "dashboards/map.json", "addToNav": true},
-      {"type": "dashboard",  "name": "TCP",                   "path": "dashboards/tcp.json", "addToNav": true},
-      {"type": "dashboard",  "name": "Volumetric DOS (TPS)",  "path": "dashboards/dosl7d_tps.json", "addToNav": true}
+      {"type": "dashboard",  "name": "Events evergreen",                "path": "dashboards/events.json", "addToNav": true},
+      {"type": "dashboard",  "name": "Attackers Map evergreen",         "path": "dashboards/map.json", "addToNav": true},
+      {"type": "dashboard",  "name": "TCP evergreen",                   "path": "dashboards/tcp.json", "addToNav": true},
+      {"type": "dashboard",  "name": "Volumetric DOS (TPS) evergreen",  "path": "dashboards/dosl7d_tps.json", "addToNav": true}
     ],
   
     "dependencies": {
