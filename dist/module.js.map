@@ -1,1 +1,0 @@
-{"version":3,"sources":["../src/module.js"],"names":["AdmdbConfigCtrl"],"mappings":";;;;;;;;AAAQA,qB,2BAAAA,e;;;4BAGNA,e","file":"module.js","sourcesContent":["import {AdmdbConfigCtrl} from './components/config/config';\r\n\r\nexport {\r\n  AdmdbConfigCtrl as ConfigCtrl\r\n};\r\n"]}
