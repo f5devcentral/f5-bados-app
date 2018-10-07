@@ -16,7 +16,7 @@ function (angular, _, dateMath, AdmQueryBuilder, geohash, countries, states) {
   function AdmDbDatasource(instanceSettings, $q, backendSrv, templateSrv) {
     console.log(instanceSettings);
     console.log(arguments);
-    this.type = 'grafana-admdb-datasource-evergreen';
+    this.type = 'grafana-admdb-evergreen-datasource';
     this.url = instanceSettings.url;
     this.database = instanceSettings.jsonData.database
     this.name = instanceSettings.name;

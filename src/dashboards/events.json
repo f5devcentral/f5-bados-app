@@ -373,7 +373,7 @@
             "selected": true
           }
         ],
-        "query": "grafana-admdb-datasource-evergreen",
+        "query": "grafana-admdb-evergreen-datasource",
         "refresh": 1,
         "regex": "",
         "type": "datasource"
