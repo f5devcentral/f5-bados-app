@@ -15,7 +15,7 @@ grafana-cli --pluginUrl https://github.com/akruman/grafana-datatable-panel/archi
 5. Configure data source per each BIG-IP
     - type: F5 Networks BIG-IP datasource
     - name: name your datasource
-    - url: https://<ip>/ to your BIG-IP managment
+    - url: https://[ip]/ to your BIG-IP managment
     - access: sever
     - Basic Auth: V
     - Skip TLS Verification: V
