@@ -563,6 +563,19 @@ print table_query('`+base_path+`','`+db+`',`+sRate+`,`+JSON.stringify(tsfiles)+`
           return !((vv[0]=='_' && /[0-9a-zA-Z\-_.]/.test(vv[1])) || /[0-9a-f]{2}/.test(vv))
         }).length==0;
   };
+
+  /** @return promise that gets fullfilled when all promises each either succ or fail */
+  AdmDbDatasource.prototype.allSettled = function(promises) {
+    // $q missing this in grafana
+    return this.q.all(
+      promises.map(function(promise){ 
+        return promise.then(
+          function(x){return {state:'fullfilled', value:x}}, 
+          function(e){return {state:'rejected', reason:e}}
+        )
+      })
+    )
+  }
 /*
   performs a test connection to the bigip through the rest api.
   from configuration:
