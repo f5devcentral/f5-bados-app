@@ -14,13 +14,13 @@
         "small": "img/admdb_logo_large.png",
         "large": "img/admdb_logo_large.png"
       },
-      "version": "0.0.2.evergreen",
-      "updated": "2018-10-04"
+      "version": "0.0.3.evergreen",
+      "updated": "2018-10-07"
     },
     "includes": [
       {
         "type": "datasource",
-        "name": "F5 Networks BIG-IP datasource"
+        "name": "F5 Networks BIG-IP datasource evergreen"
       },
       {"type": "dashboard",  "name": "Virtual Servers",       "path": "dashboards/home.json", "addToNav": true, "defaultNav": true},
       {"type": "dashboard",  "name": "Health and Mitigations","path": "dashboards/health.json", "addToNav": true},
