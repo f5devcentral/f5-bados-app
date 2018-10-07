@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../src/components/config/config.js"],"names":["AdmdbConfigCtrl","templateUrl"],"mappings":";;;;;;;;;;;;;;;;iCAAaA,e,GACX,2BAAc;AAAA;AAAG,O;;;;AAEnBA,sBAAgBC,WAAhB,GAA8B,+BAA9B","file":"config.js","sourcesContent":["export class AdmdbConfigCtrl {\r\n  constructor() { }\r\n}\r\nAdmdbConfigCtrl.templateUrl = 'components/config/config.html';"]}
