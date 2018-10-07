@@ -1,6 +1,6 @@
 {
   "name": "f5-bdos-app",
-  "version": "0.0.5.evergreen",
+  "version": "0.0.6.evergreen",
   "description": "F5 BIG-IP evergreen ASM DDOS Visualization application",
   "main": "dist/module.js",
   "scripts": {
