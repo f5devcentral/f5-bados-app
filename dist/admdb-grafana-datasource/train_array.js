@@ -186,7 +186,10 @@ function (_, dateMath) {
             return this
         }
 
-        get signature_name(){return this.values[23] || undefined;} 
+        get signature_name(){
+            if(this.values[23]=="0"){return undefined;}
+            return this.values[23] || undefined;
+        } 
         get sample_count(){return +this.values[24] || 1;}
         set sample_count(cnt){this.values[24] = ''+cnt} 
         get predicates(){return this.values[25] || undefined;}
@@ -367,7 +370,10 @@ function (_, dateMath) {
         get nheaders(){ return this.values[1] || 0}
         get nuriparams(){ return this.values[2] || 0}
         get urilen(){ return this.values[3] || 0}
-        get signature_name(){return this.values[35] || undefined;} 
+        get signature_name(){
+            if(this.values[35]=="0"){return undefined;}
+            return this.values[35] || undefined;
+        } 
         get sample_count(){return +this.values[36] || 1;} 
         set sample_count(cnt){this.values[36] = ''+cnt}
         get predicates(){return this.values[37] || undefined;}
