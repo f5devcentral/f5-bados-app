@@ -20,8 +20,8 @@
       "small": "img/admdb_logo_large.png",
       "large": "img/admdb_logo_large.png"
     },
-    "version": "1.10.3",
-    "updated": "2019-01-08"
+    "version": "1.10.4",
+    "updated": "2019-01-10"
   },
 
   "dependencies": {
