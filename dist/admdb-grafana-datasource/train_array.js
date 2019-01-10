@@ -224,6 +224,9 @@ function (_, dateMath) {
         constructor(row){
             super(row)
             // parsing
+            if(this.values.length == 41) { 
+                this.values.splice(28, 3) // TMP: remove uneeded hdrorder introduced in hyak
+            }
             this.merged_rows = {}
             this.method = new HttpMethod(this.int_value(4))
             this.method.val_used = 1
@@ -237,15 +240,20 @@ function (_, dateMath) {
             this.filename = new HttpHdr('', this.substr_payload(34,17,18), this.int_value(19))
             this.filename.val_used = 1
 
+            this.version = ''
+            this.uriparams = ''
             try{
                 let str0 = this.values[34].split('\n',1)[0]
                 let fname_off = this.int_value(17)
                 let fname_len = this.int_value(18)
-                this.uriparams = str0.substr(fname_off+fname_len, str0.indexOf(' ', fname_off+fname_len))
-            }catch(e){this.uriparams = ''}
-            try{
-                this.version = this.values[34].split('\n',1)[0].split(' ').slice(-1)[0]
-            }catch(e){this.version = ''}
+                let version_index = str0.lastIndexOf(' ')
+                if(version_index != -1) {
+                    this.version = str0.slice(version_index+1)
+                    this.uriparams = str0.slice(fname_off+fname_len, version_index)
+                }
+            }catch(e){
+                console.log(e)
+            }
 
             this.hdrs = Object.assign(this.hdrs, {
                 "Host" : new HttpHdr("Host", this.substr_payload(34,20,21,true), this.int_value(22)),

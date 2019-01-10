@@ -14,8 +14,8 @@
         "small": "img/admdb_logo_large.png",
         "large": "img/admdb_logo_large.png"
       },
-      "version": "0.0.4",
-      "updated": "2019-01-08"
+      "version": "0.0.5",
+      "updated": "2019-01-10"
     },
     "includes": [
       {

@@ -1,6 +1,6 @@
 # F5 BIG-IP ASM DDOS Visualization application for grafana
 ## Installation
-1. Install latest grafana (this tested with 5.2.2, should be fine with version 5.x.x)
+1. Install latest grafana (this tested with 5.2.4, should be fine with version 5.x.x)
 2. Use the grafana-cli tool to install bados app and its dependencies from the commandline:
 ```
 grafana-cli plugins install grafana-worldmap-panel 0.1.2
