@@ -498,7 +498,8 @@
             "Other mitigations": "#E24D42",
             "Sucessful transactions": "#7EB26D",
             "Uncontrolled DOS": "#052B51",
-            "Whitelist": "#64B0C8"
+            "Whitelist": "#64B0C8",
+            "IP Intelligence": "#ef9313"
           },
           "bars": false,
           "dashLength": 10,
@@ -547,6 +548,11 @@
               "alias": "Whitelist",
               "fill": 10,
               "zindex": -1
+            },
+            {
+              "alias": "IP Intelligence",
+              "fill": 6,
+              "linewidth": 0
             }
           ],
           "spaceLength": 10,
@@ -578,6 +584,11 @@
               "alias": "Whitelist",
               "query": "{\"vs\":\"$vs\", \"topic\":\"sig\", \"metric\":\"whitelist_count\",\"columns\":[0]}",
               "refId": "E"
+            },
+            {
+              "alias": "IP Intelligence",
+              "query": "{\"vs\":\"$vs\", \"topic\":\"sig\", \"metric\":\"l7_ipintel_hits\",\"columns\":[0]}",
+              "refId": "F"
             }
           ],
           "thresholds": [],
@@ -1637,5 +1648,5 @@
   },
   "timezone": "browser",
   "title": "Health and Mitigations",
-  "version": 12
+  "version": 13
 }
