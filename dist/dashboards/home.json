@@ -199,7 +199,7 @@
       "targets": [
         {
           "alias": "Attack",
-          "query": "{\"tpms\":\"info.attack\", \"columns\":[0], \"table\":1, \"vs_regex\":\"^/.*\"}",
+          "query": "{\"tpms\":\"info.attack\", \"columns\":[0], \"table\":1, \"vs_regex\":\"^(?!all).*\"}",
           "refId": "A"
         },
         {

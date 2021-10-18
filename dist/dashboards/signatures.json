@@ -395,7 +395,7 @@
         "options": [],
         "query": "{\"list_vs\":1}",
         "refresh": 1,
-        "regex": "\\/.*",
+        "regex": "^(?!all).*",
         "sort": 0,
         "tagValuesQuery": "",
         "tags": [],

@@ -22,3 +22,11 @@ grafana-cli --pluginUrl https://github.com/akruman/grafana-datatable-panel/archi
     - user: bigip managment account user (can be guest)
     - password: 
     - database: default
+
+6. for dev:
+    sudo apt install npm
+    npm install
+    sudo apt install node-grunt-cli
+    # do your changes, grunt to create dist
+    grunt
+

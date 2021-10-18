@@ -446,7 +446,7 @@
         ],
         "query": "{\"list_vs\":1}",
         "refresh": 2,
-	"regex": "\\/.*",
+	      "regex": "^(?!all).*",
         "type": "query"
       },
       {
