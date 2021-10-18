@@ -433,10 +433,10 @@
             "value": "all",
             "selected": false
           }
-        ],
+        ],    
         "query": "{\"list_vs\":1}",
         "refresh": 1,
-        "regex": "\\/.*",
+        "regex": "^(?!all).*",
         "type": "query",
         "useTags": false,
         "current": {
