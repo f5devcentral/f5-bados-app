@@ -496,10 +496,10 @@
             "Baseline": "#EAB839",
             "Incoming requests": "#0A437C",
             "Other mitigations": "#E24D42",
-            "Sucessful transactions": "#7EB26D",
+            "Successful transactions": "#7EB26D",
             "Uncontrolled DOS": "#052B51",
             "Whitelist": "#64B0C8",
-            "IP Intelligence": "#ef9313"
+            "Incoming datagrams": "#03fcd3"
           },
           "bars": false,
           "dashLength": 10,
@@ -536,7 +536,7 @@
               "alias": "Incoming requests"
             },
             {
-              "alias": "Sucessful transactions",
+              "alias": "Successful transactions",
               "fill": 6,
               "linewidth": 0
             },
@@ -550,7 +550,7 @@
               "zindex": -1
             },
             {
-              "alias": "IP Intelligence",
+              "alias": "Incoming datagrams",
               "fill": 6,
               "linewidth": 0
             }
@@ -562,7 +562,7 @@
           "targets": [
             {
               "alias": "Incoming requests",
-              "query": "{\"vs\":\"$vs\", \"topic\":\"sig\", \"metric\":\"l7requests\",\"columns\":[0]}",
+              "query": "{\"vs\":\"$vs\", \"topic\":\"sig\", \"metric\":\"l7_pure_requests\",\"columns\":[0]}",
               "refId": "A"
             },
             {
@@ -576,7 +576,7 @@
               "refId": "C"
             },
             {
-              "alias": "Sucessful transactions",
+              "alias": "Successful transactions",
               "query": "{\"vs\":\"$vs\", \"topic\":\"sig\", \"metric\":\"tps\",\"columns\":[0]}",
               "refId": "D"
             },
@@ -586,8 +586,8 @@
               "refId": "E"
             },
             {
-              "alias": "IP Intelligence",
-              "query": "{\"vs\":\"$vs\", \"topic\":\"sig\", \"metric\":\"l7_ipintel_hits\",\"columns\":[0]}",
+              "alias": "Incoming datagrams",
+              "query": "{\"vs\":\"$vs\", \"topic\":\"sig\", \"metric\":\"l7requests\",\"columns\":[0]}",
               "refId": "F"
             }
           ],
@@ -631,9 +631,10 @@
         {
           "aliasColors": {
             "Incoming requests": "#1F78C1",
-            "Passthrought Requests": "#7EB26D",
-            "RPS Threshold": "#E24D42",
-            "Uncontrolled DOS": "#052B51"
+            "Passthrough Requests": "#7EB26D",
+            "DPS Threshold": "#E24D42",
+            "Uncontrolled DOS": "#052B51",
+            "Incoming datagrams": "#03fcd3"
           },
           "bars": false,
           "dashLength": 10,
@@ -681,7 +682,7 @@
               "yaxis": 1
             },
             {
-              "alias": "RPS Threshold",
+              "alias": "DPS Threshold",
               "linewidth": 3,
               "yaxis": 1
             }
@@ -693,7 +694,7 @@
           "targets": [
             {
               "alias": "Incoming requests",
-              "query": "{\"vs\":\"$vs\",\"topic\":\"sig\", \"metric\":\"l7requests\",\"columns\":[0]}",
+              "query": "{\"vs\":\"$vs\",\"topic\":\"sig\", \"metric\":\"l7_pure_requests\",\"columns\":[0]}",
               "refId": "A"
             },
             {
@@ -702,14 +703,19 @@
               "refId": "B"
             },
             {
-              "alias": "Passthrought Requests",
+              "alias": "Passthrough Requests",
               "query": "{\"vs\":\"$vs\",\"topic\":\"sig\", \"metric\":\"l7_server_requests\",\"columns\":[0]}",
               "refId": "C"
             },
             {
-              "alias": "RPS Threshold",
+              "alias": "DPS Threshold",
               "query": "{\"vs\":\"$vs\",\"topic\":\"threshold\", \"metric\":\"tps\",\"columns\":[0]}",
               "refId": "D"
+            },
+            {
+              "alias": "Incoming datagrams",
+              "query": "{\"vs\":\"$vs\",\"topic\":\"sig\", \"metric\":\"l7requests\",\"columns\":[0]}",
+              "refId": "E"
             }
           ],
           "thresholds": [],
@@ -754,7 +760,7 @@
             "Baseline": "#EAB839",
             "Incoming requests": "#0A437C",
             "Other mitigations": "#E24D42",
-            "Sucessful transactions": "#7EB26D",
+            "Successful transactions": "#7EB26D",
             "TLS Hello": "#E5A8E2",
             "Uncontrolled DOS": "#052B51",
             "Whitelist": "#64B0C8"
@@ -904,10 +910,6 @@
               "fill": 8
             },
             {
-              "alias": "Base",
-              "linewidth": 3
-            },
-            {
               "alias": "Responses",
               "fill": 4
             },
@@ -927,19 +929,14 @@
               "refId": "A"
             },
             {
-              "alias": "Base",
-              "query": "{\"vs\":\"$vs\",\"topic\":\"base\", \"metric\":\"tps\",\"columns\":[0]}",
-              "refId": "B"
-            },
-            {
               "alias": "Responses",
               "query": "{\"vs\":\"$vs\",\"topic\":\"sig\", \"metric\":\"tps\",\"columns\":[0]}",
-              "refId": "C"
+              "refId": "B"
             },
             {
               "alias": "Deny of Service",
               "query": "{\"vs\":\"$vs\", \"topic\":\"sig\", \"metric\":\"l7dps\",\"columns\":[0]}",
-              "refId": "D"
+              "refId": "C"
             }
           ],
           "thresholds": [],
@@ -980,15 +977,16 @@
           ]
         },
         {
+          "title": "Server Stress Level",
           "aliasColors": {
-            "Queue": "#E24D42",
+            "Concurrent connections": "#E24D42",
             "Stress": "#7EB26D"
           },
           "bars": false,
           "dashLength": 10,
           "dashes": false,
           "datasource": "$ds",
-          "description": "Server Stress Level and Queue (pending requests)",
+          "description": "Server Stress Level",
           "editable": true,
           "error": false,
           "fill": 3,
@@ -1014,7 +1012,7 @@
           "renderer": "flot",
           "seriesOverrides": [
             {
-              "alias": "Queue",
+              "alias": "Concurrent connections",
               "color": "#E24D42",
               "fill": 0,
               "linewidth": 1,
@@ -1043,8 +1041,8 @@
               "refId": "A"
             },
             {
-              "alias": "Queue",
-              "query": "{\"vs\":\"$vs\",\"topic\":\"sig\", \"metric\":\"pending_counter\",\"columns\":[0]}",
+              "alias": "Concurrent connections",
+              "query": "{\"vs\":\"$vs\",\"topic\":\"sig\", \"metric\":\"conns\",\"columns\":[0]}",
               "refId": "B"
             },
             {
@@ -1072,7 +1070,6 @@
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Server Stress Level and Queue",
           "tooltip": {
             "msResolution": true,
             "shared": true,
@@ -1092,7 +1089,7 @@
             {
               "decimals": 1,
               "format": "short",
-              "label": "Predictive Latency",
+              "label": "",
               "logBase": 10,
               "max": "10",
               "min": 0,
@@ -1101,7 +1098,7 @@
             {
               "decimals": 0,
               "format": "short",
-              "label": "Server Queue",
+              "label": "",
               "logBase": 1,
               "max": null,
               "min": "0",
