@@ -530,15 +530,14 @@
           "seriesOverrides": [
             {
               "alias": "Uncontrolled DOS",
-              "fill": 10
+              "fill": 1
             },
             {
-              "alias": "Incoming requests"
+              "alias": "Incoming requests",
+              "color": "#447ebc"
             },
             {
-              "alias": "Successful transactions",
-              "fill": 6,
-              "linewidth": 0
+              "alias": "Successful transactions"
             },
             {
               "alias": "Baseline",
@@ -551,7 +550,6 @@
             },
             {
               "alias": "Incoming datagrams",
-              "fill": 6,
               "linewidth": 0
             }
           ],
