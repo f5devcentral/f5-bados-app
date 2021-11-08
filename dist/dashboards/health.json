@@ -549,8 +549,7 @@
               "zindex": -1
             },
             {
-              "alias": "Incoming datagrams",
-              "linewidth": 0
+              "alias": "Incoming datagrams"
             }
           ],
           "spaceLength": 10,
