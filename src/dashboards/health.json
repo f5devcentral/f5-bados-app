@@ -537,7 +537,8 @@
               "color": "#447ebc"
             },
             {
-              "alias": "Successful transactions"
+              "alias": "Successful transactions",
+              "fill": 1
             },
             {
               "alias": "Baseline",
